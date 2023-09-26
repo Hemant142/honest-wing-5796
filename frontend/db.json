@@ -1,0 +1,17 @@
+{
+    "Song":[
+        {
+            "id":1,
+            "avatar":"",
+            "play":"",
+            "rating":"averaeg of liked and disliked",
+            "catogary":"Classic",
+            "title":"name",
+            "artist":"artist-name",
+            "liked":0,
+            "disliked":0,
+            "lyrics":["Song Lyrics"]
+        }
+    ],
+    "users":[]
+}
