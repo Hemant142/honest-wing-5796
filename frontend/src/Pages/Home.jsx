@@ -1,7 +1,11 @@
 import React from 'react'
-
+import Sidebar from '../Components/Sidebar'
+import Navbar from '../Components/Navbar'
 export default function Home() {
   return (
-    <div>Home</div>
+    <div style={{display:"flex"}}>
+       <Sidebar/>
+       <Navbar/>
+    </div>
   )
 }
