@@ -2,7 +2,8 @@
 const express=require("express");
 require("dotenv").config()
 const cors=require("cors");
-const {connection}=require("./db")
+const {connection}=require("./db");
+const { SongRoute } = require("./Routes/Song.Route");
 const app=express();
 app.use(express.json())
 app.use(cors())
@@ -11,7 +12,7 @@ app.get("/",async(req,res)=>{
     res.setHeader("Content-type", "text/html")
     res.send("<h1>Welcome to the Sare Gama server</h1>")
 })
-
+app.use("/songs",SongRoute)
 const PORT=process.env.PORT
 app.listen(PORT,async()=>{
  try{
