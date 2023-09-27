@@ -8,11 +8,11 @@ import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faEye, faEyeSlash, faLock, faUserCircle} from "@fortawesome/free-solid-svg-icons"
 // import {faFacebook, faGoogle} from "@fortawesome/free-brands-svg-icons"
+// import { faFacebook, faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook, faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons';
-
 import Cookies from "js-cookie"
 export default function SignUp() {
-  // const lock = <FontAwesomeIcon size='md' icon={faLock} />
+  const lock = <FontAwesomeIcon size='md' icon={faLock} />
   const lock1 = <FontAwesomeIcon size='xs' icon={faLock} />
   const user = <FontAwesomeIcon size='lg' icon={faUserCircle} />
   const google = <FontAwesomeIcon size='lg' icon={faGoogle} />
@@ -29,6 +29,10 @@ export default function SignUp() {
   const navigate = useNavigate();
   const toast = useToast()
   const dispatch = useDispatch();
+  const loading=false;
+  const handleSubmit=()=>{
+
+  }
   return (
     <Flex justifyContent="space-between" w="100%" direction={{base:"column",sm:"column",md:"row",lg:"row",xl:"row"}}>
     <Helmet>
