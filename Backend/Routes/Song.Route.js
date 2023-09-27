@@ -1,8 +1,9 @@
 const express = require("express");
 const { SongModel } = require("../Model/Song.Model");
+const { auth } = require("../Middleware/auth.middleware");
 
 const SongRoute = express.Router();
-
+// SongRoute.use(auth)
 // Song Get Requeest for getting the song according the query
 SongRoute.get("/", async (req, res) => {
   // title: String,
@@ -91,7 +92,7 @@ SongRoute.get("/", async (req, res) => {
 
 // Song post Requeest for adding the new song according
 
-SongRoute.post("/add", async (req, res) => {
+SongRoute.post("/add", auth, async (req, res) => {
   const SongFromBody = req.body;
   // console.log(SongFromBody);
   try {
@@ -106,7 +107,7 @@ SongRoute.post("/add", async (req, res) => {
 });
 
 // Song patch Requeest for updating the song according
-SongRoute.patch("/update/:songId", async (req, res) => {
+SongRoute.patch("/update/:songId", auth, async (req, res) => {
   try {
     const { songId } = req.params;
 
@@ -132,7 +133,7 @@ SongRoute.patch("/update/:songId", async (req, res) => {
 
 // Song delete Requeest for deleting the song according
 
-SongRoute.delete("/delete/:songId", async (req, res) => {
+SongRoute.delete("/delete/:songId", auth, async (req, res) => {
   try {
     const { songId } = req.params;
     // console.log({songId});
