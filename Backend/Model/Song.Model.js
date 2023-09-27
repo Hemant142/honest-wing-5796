@@ -10,7 +10,7 @@ const SongSchema = mongoose.Schema({
   liked: Number,
   disliked: Number,
   lyrics: [String],
-});
+},{versionKey:false});
 
 
 const SongModel= mongoose.model("SongList",SongSchema);
