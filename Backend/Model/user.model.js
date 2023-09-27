@@ -6,11 +6,11 @@ const userSchema = mongoose.Schema({
     name : {type : String, required : true},
     email : {type : String, required : true},
     password : {type : String, required : true},
-    gender : {type : String, required : true},
-    image : {type : String, required : true},
-    dob : {type : String, required : true},
-    age : {type : Number, required : true},
-    role : {type : String, required : true},
+    gender : {type : String},
+    image : {type : String},
+    dob : {type : String},
+    age : {type : Number},
+    role : {type : String},
 },{
     //making version key false to not get it in to database automaticlly
     versionKey : false
