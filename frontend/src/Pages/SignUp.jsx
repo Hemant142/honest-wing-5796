@@ -35,6 +35,7 @@ import {
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 // import {faFacebook, faGoogle} from "@fortawesome/free-brands-svg-icons"
+
 import {
   faFacebook,
   faGoogle,
@@ -65,11 +66,14 @@ export default function SignUp() {
     password: "",
   });
   const [err, setErr] = useState(false);
+
+
   const token = Cookies.get("login_token");
   const name = Cookies.get("login_name");
   const navigate = useNavigate();
   const toast = useToast();
   const dispatch = useDispatch();
+
   const loading = useSelector((store) => store.authReducer.loading);
   //   const loading=false
   const handleSubmit = (e) => {
@@ -130,6 +134,7 @@ export default function SignUp() {
    });
   };
  
+
   return (
     <Flex
       justifyContent="space-between"
