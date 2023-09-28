@@ -5,6 +5,7 @@ const SECRET_KEY = process.env.secretKey;
 
 const auth = async(req, res, next) => {
     const token = req.headers.authorization;
+    // console.log({token});
     try {
         if(token){
             let existingToken = await BlacklistModel.find({
