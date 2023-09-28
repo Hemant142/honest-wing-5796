@@ -3,7 +3,7 @@ import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 export default function Navbar() {
   return (
-    <div style={{display:"flex",alignItems:"center", width:"100%", height:"70px",backgroundColor:"#2C2C2C"}}>
+    <div style={{display:"flex",alignItems:"center", width:"77%", height:"70px",backgroundColor:"#2C2C2C"}}>
     <InputGroup style={{ marginLeft:"70px"}}>
       <InputLeftElement
         pointerEvents="none"

@@ -3,7 +3,7 @@ import { Flex, Spacer } from '@chakra-ui/react'
 
 export default function Sidebar() {
   return (
-    <div style={{display:"flex", flexDirection:"column", width:"100%", backgroundColor:"#2C2C2C"}}>
+    <div style={{display:"flex", flexDirection:"column", width:"23%", backgroundColor:"#2C2C2C"}}>
       
 
       <div style={{display:"flex", flexDirection:"column", backgroundColor:"black", borderRadius:"6px",margin:"5px"}}>
