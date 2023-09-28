@@ -29,7 +29,7 @@ userRouter.post("/register", async (req, res) => {
     if (existingUser.length) {
       return res
         .status(400)
-        .json({ error: "Registration failed User already exists" });
+        .json({ error: "User has already registered" });
     } else if (checkPassword(password)) {
       bcrypt.hash(password, 10, async (err, hash) => {
         const NewUser = new UserModel({
@@ -61,22 +61,27 @@ userRouter.post("/register", async (req, res) => {
 //This is login user route. When a user get login he will get token with the 7 days of expirey
 userRouter.post("/login", async(req, res) =>{
     const {email ,password} = req.body;
+  
     try {
         const existingUser = await UserModel.findOne({email});
+        // console.log(existingUser)
         if(existingUser){
             bcrypt.compare(password, existingUser.password, (err, result) =>{
                 if(result){
-                    const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7;
-                    const token = jwt.sign({userID : existingUser._id, username : existingUser.name}, SECRET_KEY,{
+                     const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7;
+                     const token = jwt.sign({userID : existingUser._id, username : existingUser.name}, SECRET_KEY,{
                         expiresIn : expirationTime
                     })
                     return res.status(200).json({msg : "Login Successfull!", token});
                 }else{
-                    res.status(400).json({msg : "Login failed! Wronge password provided"});
+                    res.status(400).json({error : "Invalid Password!"});
                 }
             })
+        }else{
+          res.status(400).json({error : "User Not Found!"});
         }
     } catch (error) {
+      // console.log(error.message)
         res.status(400).json({error : error.message});
     }
 })

@@ -32,12 +32,12 @@ import Cookies from "js-cookie";
 import { userlogin } from "../Redux/authReducer/action";
 import { Helmet } from "react-helmet";
 export default function Login() {
-  const lock = <FontAwesomeIcon size="md" icon={faLock} />;
+  const lock = <FontAwesomeIcon size="lg" icon={faLock} />;;
   const google = <FontAwesomeIcon size="lg" icon={faGoogle} />;
   const facebook = <FontAwesomeIcon size="lg" icon={faFacebook} />;
-  const envelope = <FontAwesomeIcon size="md" icon={faEnvelope} />;
-  const eye = <FontAwesomeIcon size="sm" icon={faEye} />;
-  const closeye = <FontAwesomeIcon size="sm" icon={faEyeSlash} />;
+  const envelope = <FontAwesomeIcon size="lg" icon={faEnvelope} />;
+  const eye = <FontAwesomeIcon size="lg" icon={faEye} />;
+  const closeye = <FontAwesomeIcon size="lg" icon={faEyeSlash} />;
 
   const [show, setShow] = useState(false);
   const [formdata, setFormdata] = useState({ email: "", password: "" });
@@ -48,7 +48,77 @@ export default function Login() {
   const dispatch = useDispatch();
   const loading = useSelector((store) => store.authReducer.loading);
   const location = useLocation();
-  const handleSubmit = () => {};
+
+  const handleSubmit = (e) => {
+   
+    e.preventDefault();
+    // console.log(formdata,"Form data")
+    dispatch(userlogin(formdata)).then((res)=>{
+      console.log(res.data,"data")
+      dispatch({type:USER_LOGIN_SUCCESS})
+      
+      if(res.data.msg==="Login Successfull!"){
+          console.log(res);
+          setFormdata({email:"",password:""})
+          Cookies.set("login_token",`${res.data.token}`,{expires:7})
+          Cookies.set("login_name",`${res.data.user.username}`,{expires:7})
+          Cookies.set("login_email",`${res.data.user.email}`,{expires:7})
+          formdata.password==="admin"?Cookies.set("login_role","admin",{expires:7}):Cookies.set("login_role","user",{expires:7});
+          toast({
+              title: `Welcome ${res.data.user.username}`,
+              position: "bottom",
+              status: 'success',
+              duration: 2000,
+              isClosable: true,
+          })
+          setTimeout(() => {
+              if(location.state===null){
+                  navigate("/")
+              }else{
+                  navigate(`${location.state}`, {replace:true})
+              }
+          }, 2000);
+      }else if(res.data.error==="Invalid Password!"){
+          toast({
+              title: `${res.data.error}`,
+              position: "bottom",
+              status: 'error',
+              duration: 3000,
+              isClosable: true,
+          })
+      }else if(res.data.error==="User Not Found!"){
+          toast({
+              title: `${res.data.error}`,
+              position: "bottom",
+              status: 'error',
+              duration: 3000,
+              isClosable: true,
+          })
+      }else{
+          toast({
+              title: `Something Went Wrong, Try again!!`,
+              status: 'error',
+              position: "bottom",
+              duration: 3000,
+              isClosable: true,
+          })
+      }
+      
+  }).catch((err)=>{
+      dispatch({type:USER_FAIL})
+      toast({
+          title: `Something Went Wrong, Try again!!`,
+          status: 'error',
+          position: "bottom",
+          duration: 3000,
+          isClosable: true,
+        })
+  })
+  };
+  console.log(token,name)
+  if (token && name) {
+    return <Navigate to="/" />;
+  }
   return (
     <Flex
       justifyContent="space-between"
@@ -110,7 +180,7 @@ export default function Login() {
           <br />
           <form
             onSubmit={handleSubmit}
-            class="animate__animated animate__fadeInUp"
+            className="animate__animated animate__fadeInUp"
           >
             <FormControl isRequired>
               <FormLabel>EMAIL</FormLabel>
@@ -196,7 +266,7 @@ export default function Login() {
                   _hover={{ bg: "#7f07f7f5" }}
                 ></Button>
               ) : (
-                <button type="submit" class="custom-btn btn-7">
+                <button type="submit" className="custom-btn btn-7">
                   <span>Log in...</span>
                 </button>
               )}
