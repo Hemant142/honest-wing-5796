@@ -83,6 +83,7 @@ userRouter.post("/login", async(req, res) =>{
 
 //This is a logout route on successful logout user login genrated token will be going to get blacklisted
 userRouter.get("/logout", async(req, res)=>{
+  
     const token = req.headers.authorization;
     try {
         if(token){
