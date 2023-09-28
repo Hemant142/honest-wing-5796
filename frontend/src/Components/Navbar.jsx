@@ -3,12 +3,13 @@ import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 export default function Navbar() {
   return (
-    <div style={{display:"flex",alignItems:"center", width:"100%", height:"70px",backgroundColor:"#2C2C2C"}}>
+    <div style={{display:"flex",alignItems:"center",  height:"70px",backgroundColor:"#2C2C2C"
+    , width:"100%" }}>
     <InputGroup style={{ marginLeft:"70px"}}>
       <InputLeftElement
         pointerEvents="none"
-        children={<SearchIcon color="gray.300" />}
-        style={{marginLeft:"10px", marginTop:"18px"}}
+        children={<SearchIcon color="gray.600" />}
+        style={{ marginTop:"7px"}}
       />
       <Input style={{width:"350px", borderRadius:"30px", height:"50px", border:"none", paddingLeft:"35px", color:"#H8H8H8", fontSize:"17px"}} type="text" placeholder="what you want to listen" />
     </InputGroup>
