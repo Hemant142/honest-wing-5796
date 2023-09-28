@@ -22,8 +22,8 @@ const Theme = extendTheme({
 
     colors: {
         brand: {
-            100: "#e45700", //orange
-            200: "#ff8f49", //light orange
+            100: "#E9D8FD", //purple
+            200: "#D6BCFA", //light purple
             300: "#000000", //dark black
             400: "#FFFFFF", //white
             500: "#FFFF00", //yellow
