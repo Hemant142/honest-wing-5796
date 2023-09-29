@@ -6,8 +6,9 @@ const {userRouter} = require("./Routes/user.routes");
 const { SongRoute } = require("./Routes/Song.Route");
 const { FavoriteSongRoute } = require("./Routes/Favirote.Route");
 const app=express();
-app.use(express.json())
 app.use(cors())
+
+app.use(express.json())
 
 app.get("/",async(req,res)=>{
     res.setHeader("Content-type", "text/html")
