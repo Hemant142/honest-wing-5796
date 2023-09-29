@@ -2,15 +2,15 @@ import { USER_LOADING } from "../actionTypes";
 import axios from "axios";
 
 export const usersignup = (payload)=> (dispatch)=>{
-    console.log(payload,"Payloadf")
+    // console.log(payload,"Payloadf")
     dispatch({type:USER_LOADING})
-    return axios.post("http://localhost:8080/users/register",payload);
+    return axios.post("http://localhost:8080/users/register",payload)
 }
 
 export const userlogin = (data)=> (dispatch)=>{
     console.log(data)
     dispatch({type:USER_LOADING})
-    return axios.post("http://localhost:8080/users/login",data);
+    return axios.post("http://localhost:8080/users/login",data)
 }
 
 
