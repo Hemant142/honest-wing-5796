@@ -23,7 +23,9 @@ userRouter.get("/", async (req, res) => {
 
 //This is a user registration route where user can register him self
 userRouter.post("/register", async (req, res) => {
+
   const { name, email, password, gender, image, dob, age, role } = req.body;
+  
   try {
     const existingUser = await UserModel.find({ email });
     if (existingUser.length) {
@@ -60,6 +62,7 @@ userRouter.post("/register", async (req, res) => {
 
 //This is login user route. When a user get login he will get token with the 7 days of expirey
 userRouter.post("/login", async(req, res) =>{
+
     const {email ,password} = req.body;
   
     try {
@@ -90,6 +93,7 @@ userRouter.post("/login", async(req, res) =>{
 userRouter.get("/logout", async(req, res)=>{
   
     const token = req.headers.authorization;
+
     try {
         if(token){
             await BlacklistModel.updateMany({}, { $push : {blacklist : [token]}});
@@ -102,8 +106,10 @@ userRouter.get("/logout", async(req, res)=>{
 
 //This route is responsible for updating the information of user
 userRouter.patch("/update/:id", async(req, res) =>{
+
     const id = req.params.id;
     const payload = req.body;
+
     try {
         await UserModel.findByIdAndUpdate({_id : id}, payload);
         res.status(200).json({msg : "User detail updated successfully!"});
@@ -114,7 +120,9 @@ userRouter.patch("/update/:id", async(req, res) =>{
 
 //This route is responsible for deleting the user
 userRouter.delete("/delete/:id", async(req, res) =>{
+
     const id = req.params.id;
+
     try {
         await UserModel.findByIdAndDelete({_id : id});
         res.status(200).json({msg : "User deleted successfully!"})
