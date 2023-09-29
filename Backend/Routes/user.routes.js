@@ -13,19 +13,19 @@ const userRouter = express.Router();
 
 // This is a user route which will provid the all the users data
 userRouter.get("/", async (req, res) => {
+
   try {
     const users = await UserModel.find();
     res.status(200).json({ users: users });
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
+
 });
 
 //This is a user registration route where user can register him self
 userRouter.post("/register", async (req, res) => {
-
   const { name, email, password, gender, image, dob, age, role } = req.body;
-  
   try {
     const existingUser = await UserModel.find({ email });
     if (existingUser.length) {
@@ -62,9 +62,7 @@ userRouter.post("/register", async (req, res) => {
 
 //This is login user route. When a user get login he will get token with the 7 days of expirey
 userRouter.post("/login", async(req, res) =>{
-
     const {email ,password} = req.body;
-  
     try {
         const existingUser = await UserModel.findOne({email});
         // console.log(existingUser)
@@ -91,9 +89,7 @@ userRouter.post("/login", async(req, res) =>{
 
 //This is a logout route on successful logout user login genrated token will be going to get blacklisted
 userRouter.get("/logout", async(req, res)=>{
-  
     const token = req.headers.authorization;
-
     try {
         if(token){
             await BlacklistModel.updateMany({}, { $push : {blacklist : [token]}});
