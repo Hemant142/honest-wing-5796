@@ -61,11 +61,11 @@ export default function Login() {
           console.log(res);
           setFormdata({email:"",password:""})
           Cookies.set("login_token",`${res.data.token}`,{expires:7})
-          Cookies.set("login_name",`${res.data.user.username}`,{expires:7})
-          Cookies.set("login_email",`${res.data.user.email}`,{expires:7})
+          Cookies.set("login_name",`${res.data.existingUser.name}`,{expires:7})
+          Cookies.set("login_email",`${res.data.existingUser.email}`,{expires:7})
           formdata.password==="admin"?Cookies.set("login_role","admin",{expires:7}):Cookies.set("login_role","user",{expires:7});
           toast({
-              title: `Welcome ${res.data.user.username}`,
+              title: `Welcome ${res.data.existingUser.name}`,
               position: "bottom",
               status: 'success',
               duration: 2000,
@@ -116,9 +116,9 @@ export default function Login() {
   })
   };
   console.log(token,name)
-  if (token && name) {
-    return <Navigate to="/" />;
-  }
+  // if (token && name) {
+  //   return <Navigate to="/" />;
+  // }
   return (
     <Flex
       justifyContent="space-between"
@@ -166,7 +166,7 @@ export default function Login() {
           mt={{ base: "30px", sm: "50px", md: "70px", lg: "70px", xl: "70px" }}
           mb="70px"
         >
-          <Image w="50%" src={logo} alt="signup" />
+          {/* <Image w="50%" src={logo} alt="signup" /> */}
           <Text
             mt="25px"
             color="#7f07f7f5"

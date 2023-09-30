@@ -14,4 +14,11 @@ export const userlogin = (data)=> (dispatch)=>{
 }
 
 
+export const userlogout = (token) => (dispatch)=> {
+    dispatch({type:USER_LOADING});
 
+    return axios.get("http://localhost:8080/users/logout",{
+        headers:{
+            "Authorization":token
+        }})
+}

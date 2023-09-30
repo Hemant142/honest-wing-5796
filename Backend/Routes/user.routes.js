@@ -1,6 +1,7 @@
 //Importing all the required modules and function
 const express = require("express");
 const { UserModel } = require("../Model/user.model");
+
 const { checkPassword } = require("../Validators/passwordChecker");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -10,6 +11,12 @@ const SECRET_KEY = process.env.secretKey;
 
 // This is a user route which only contains user routes
 const userRouter = express.Router();
+ 
+
+ const JWT_SECRET="hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe"
+
+
+
 
 // This is a user route which will provid the all the users data
 userRouter.get("/", async (req, res) => {
@@ -62,13 +69,14 @@ userRouter.post("/register", async (req, res) => {
 //This is login user route. When a user get login he will get token with the 7 days of expirey
 userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
+// console.log(email,password)
   try {
     const existingUser = await UserModel.findOne({ email });
-    console.log(existingUser)
+    // console.log(existingUser)
     if (existingUser) {
       bcrypt.compare(password, existingUser.password, (err, result) => {
         if (result) {
+          console.log(result)
           const expirationTime =
             Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7;
           const token = jwt.sign(
@@ -78,7 +86,8 @@ userRouter.post("/login", async (req, res) => {
               expiresIn: expirationTime,
             }
           );
-          return res.status(200).json({ msg: "Login Successfull!", token });
+          console.log(expirationTime,"Token")
+          return res.status(200).json({ msg: "Login Successfull!", token ,existingUser});
         } else {
           res.status(200).json({ error: "Invalid Password!" });
         }
@@ -87,7 +96,7 @@ userRouter.post("/login", async (req, res) => {
       res.status(200).json({ error: "User Not Found!" });
     }
   } catch (error) {
-    // console.log(error.message)
+    console.log(error.message)
     res.status(400).json({ error: error.message });
   }
 });
@@ -128,6 +137,27 @@ userRouter.delete("/delete/:id", async (req, res) => {
   }
 });
 
+
+userRouter.post("/forgot-password",async(req,res)=>{
+  const {email}=req.body;
+  try{
+const oldUser=await UserModel.findOne({email});
+if(!oldUser){
+  return res.send("User Not Exists!!")
+}
+const secret= JWT_SECRET + oldUser.password;
+const token=jwt.sign({email:oldUser.email,id:oldUser._id},secret,{expiresIn:"5m"});
+const link =`http://localhost:8080/users/reset-password/${oldUser._id}/${token}`;
+console.log(link);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+})
+
+userRouter.get("/reset-password",async(req,res)=>{
+  const {id, token}=req.params;
+  console.log(req.params)
+})
 //exporting the userRouter
 module.exports = {
   userRouter,
