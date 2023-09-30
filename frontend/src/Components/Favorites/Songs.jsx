@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import NoFavoriteSong from './NoFavoriteSong';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-const Song = () => {
+const Song = ({setCheckIsTrue}) => {
   const arr=new Array(10).fill(0);
 
   return (
@@ -20,12 +20,11 @@ const Song = () => {
 </div>
 
   </div>
-{arr.map((el,i)=><div key={i} className='item-box'>
+{arr.map((el,i)=><div key={i} className='item-box' onClick={()=>setCheckIsTrue(true)}>
 <div className="item">
 <p>{i+1}</p>
-{/* <FontAwesomeIcon className="heart" icon="fa-regular fa-heart" /> */}
+
 <FontAwesomeIcon icon={faHeart} className="heart" />
-{/* <p className='heart'>🤍</p> */}
 <img src="#" alt="img" />
 <p>Song name</p>
 </div>
@@ -93,7 +92,7 @@ const DIV= styled.div`
   color:green;
   font-size: 25px;
   font-weight:600;
-  color: #0cf1e6;
+  color: red;
   /* border-radius: 50%; */
   display: flex;
   justify-content: space-between;
