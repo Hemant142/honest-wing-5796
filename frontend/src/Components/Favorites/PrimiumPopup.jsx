@@ -43,8 +43,8 @@ border: 0px solid red;
 
 /* z-index: 1; */
 position: fixed;
-top:10%;
-left: 20%;
+top:18%;
+left: 34%;
 box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 .primium-main{
     border:0px solid red;
