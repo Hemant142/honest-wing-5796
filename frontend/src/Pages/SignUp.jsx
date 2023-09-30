@@ -75,7 +75,7 @@ export default function SignUp() {
 
   const loading = useSelector((store) => store.authReducer.loading);
   //   const loading=false
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const dob = `${year}-${month}-${day}`;
     const payload = {
@@ -85,7 +85,7 @@ export default function SignUp() {
     };
 
     
-    dispatch(usersignup(payload))
+   await dispatch(usersignup(payload))
       .then((res) => {
         console.log(res.data,"Data");
         dispatch({ type: USER_SIGNUP_SUCCESS });
@@ -125,6 +125,7 @@ export default function SignUp() {
         }
       })
       .catch((err) => {
+        console.log(err.message,"error")
         dispatch({ type: USER_FAIL });
         toast({
           title: `Something Went Wrong, Try again!!`,

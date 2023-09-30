@@ -3,7 +3,7 @@ const { FavoriteSongModel } = require("../Model/Favorite.model");
 const { auth } = require("../Middleware/auth.middleware");
 
 const FavoriteSongRoute= express.Router();
-// FavoriteSongRoute.use(auth)
+FavoriteSongRoute.use(auth)
 
 FavoriteSongRoute.get("/",async(req,res)=>{
     // console.log({req:req.body});
@@ -38,7 +38,7 @@ FavoriteSongRoute.get("/",async(req,res)=>{
 })
 FavoriteSongRoute.post("/add",async(req,res)=>{
     const data = req.body;
-    console.log({data});
+   
     try {
      const CreatedData= new FavoriteSongModel(data)
      await CreatedData.save()

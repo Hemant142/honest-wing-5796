@@ -5,16 +5,18 @@ const { connection } = require("./db");
 const { userRouter } = require("./Routes/user.routes");
 const { SongRoute } = require("./Routes/Song.Route");
 const { FavoriteSongRoute } = require("./Routes/Favirote.Route");
-const app = express();
-app.use(express.json());
-app.use(cors());
+const app=express();
+app.use(cors())
 
-app.get("/", async (req, res) => {
-  res.setHeader("Content-type", "text/html");
-  res.send("<h1>Welcome to the Sare Gama server</h1>");
-});
-app.use("/songs", SongRoute);
-app.use("/favorite", FavoriteSongRoute);
+app.use(express.json())
+
+app.get("/",async(req,res)=>{
+    res.setHeader("Content-type", "text/html")
+    res.send("<h1>Welcome to the Sare Gama server</h1>")
+})
+app.use("/songs",SongRoute)
+app.use("/favorite",FavoriteSongRoute)
+
 app.use("/users", userRouter);
 const PORT = process.env.PORT;
 app.listen(PORT, async () => {
