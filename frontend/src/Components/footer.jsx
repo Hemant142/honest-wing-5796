@@ -2,8 +2,8 @@ import React from 'react'
 import { Flex } from '@chakra-ui/react'
 export default function Footer() {
   return (
-  <div>
- <Flex style={{backgroundColor:"#2C2C2C", color:"white", justifyContent:"space-around", padding:"26px", marginLeft:"350px",marginTop:"340px"}}>
+  <div style={{paddingLeft:"5px", paddingRight:"5px",backgroundColor:"#2C2C2C",marginTop:"-10px", marginLeft:"23%",marginBottom:"85px"}}>
+ <Flex style={{ color:"white", justifyContent:"space-around", padding:"26px",backgroundColor:"black"}}>
      <Flex direction={"column"}>
           <h5 style={{fontWeight:"bold"}}>Company</h5>
           <p>About</p>
@@ -47,7 +47,7 @@ export default function Footer() {
     </Flex >
 
 
-    <Flex style={{backgroundColor:"#2C2C2C", color:"white", justifyContent:"space-around", padding:"26px", marginLeft:"350px",borderTop:"1px solid "}}>
+    <Flex style={{backgroundColor:"black", color:"white", justifyContent:"space-around", padding:"26px",borderTop:"1px solid "}}>
     <a style={{textDecoration:"none", color:"#787878", marginLeft:"0px"}} href="">Legal</a>
          <a style={{textDecoration:"none", color:"#787878",marginLeft:"10px"}} href="">Privacy Center</a>
          <a style={{textDecoration:"none", color:"#787878",marginLeft:"10px"}} href="">Privacy Policy</a>
