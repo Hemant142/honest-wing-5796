@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userforgot } from "../Redux/authReducer/action";
 import { USER_FAIL, USER_FORGOT_SUCCESS } from "../Redux/actionTypes";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 export default function ForgotPass() {
   const envelope = <FontAwesomeIcon size="md" icon={faEnvelope} />;
@@ -32,7 +33,13 @@ export default function ForgotPass() {
   const toast = useToast();
   const loading = useSelector((store) => store.authReducer.loading);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(email)
+    axios.post(`http://localhost:8080/users/reset-password`,email)
+    .then((res)=>console.log(res.data,"userRefister"))
+    
+  };
   return (
     <Flex
       justifyContent="space-between"
