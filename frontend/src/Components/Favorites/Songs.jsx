@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components';
 import NoFavoriteSong from './NoFavoriteSong';
-
-const Song = () => {
-  const arr=new Array(6).fill(0);
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+const Song = ({setCheckIsTrue}) => {
+  const arr=new Array(10).fill(0);
 
   return (
     arr.length>0?<DIV>
@@ -19,10 +20,11 @@ const Song = () => {
 </div>
 
   </div>
-{arr.map((el,i)=><div key={i} className='item-box'>
+{arr.map((el,i)=><div key={i} className='item-box' onClick={()=>setCheckIsTrue(true)}>
 <div className="item">
 <p>{i+1}</p>
-<p className='heart'>🤍</p>
+
+<FontAwesomeIcon icon={faHeart} className="heart" />
 <img src="#" alt="img" />
 <p>Song name</p>
 </div>
@@ -45,6 +47,7 @@ const DIV= styled.div`
   border:0px solid #4807e2;
   display: flex;
   flex-direction: column;
+  /* width: 400px; */
   gap: .5rem;
   /* overflow-y: 2; */
 }
@@ -89,8 +92,8 @@ const DIV= styled.div`
   color:green;
   font-size: 25px;
   font-weight:600;
-  background-color: green;
-  border-radius: 50%;
+  color: red;
+  /* border-radius: 50%; */
   display: flex;
   justify-content: space-between;
   align-items: center;

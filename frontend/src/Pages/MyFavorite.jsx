@@ -7,23 +7,23 @@ import Artist from "../Components/Favorites/Artist";
 import Albums from "../Components/Favorites/Albums";
 import Song from "../Components/Favorites/Songs";
 import Playlists from "../Components/Favorites/Playlists";
-export default function MyFavorite() {
+import PrimiumPopup from "../Components/Favorites/PrimiumPopup";
+export default function MyFavorite({setCheckIsTrue}) {
   const [render, setRender] = useState("Songs");
   const [sowInput,setSowInput]=useState(false)
+  const [sowPopup,setSow]= useState(false)
  
   const [song,setSong]=useState("")
   console.log({song})
   console.log({ render });
-  // const handleClick=()=>{
-  //   setSowInput(false)
-  // }
-
+ 
   const handleChange=(e)=>{
 
     setSong(e.target.value)
   }
   return (
     <DIV>
+      {sowPopup&&<PrimiumPopup setSow={setSow}/>}
       <div className="favorite-main">
         <div className="my-favorite">
           <h1>My Favorite</h1>
@@ -40,8 +40,14 @@ export default function MyFavorite() {
           <div className="play-btn">
             <h1>Play</h1>
           </div>
-          <div className="primium">{"$"}</div>
-          <div className="primium">{"#"}</div>
+          <div className="primium" onClick={(e)=>{
+               setSow(true)
+               e.stopPropagation()
+          }}>{"$"}</div>
+          <div className="primium" onClick={(e)=>{
+               setSow(true)
+               e.stopPropagation()
+          }}>{"#"}</div>
         </div>
         <div className="search-song">
           <div className="song">SONG(3)</div>
@@ -58,10 +64,10 @@ export default function MyFavorite() {
           </div>
         </div>
         <div className="multiple-render">
-          {render=="Artists"&&<Artist/>}
-          {render=="Songs"&&<Song/>}
-          {render=="Playlists"&&<Playlists/>}
-          {render=="Albums"&&<Albums/>}
+          {render=="Artists"&&<Artist setCheckIsTrue={setCheckIsTrue}/>}
+          {render=="Songs"&&<Song setCheckIsTrue={setCheckIsTrue}/>}
+          {render=="Playlists"&&<Playlists setCheckIsTrue={setCheckIsTrue}/>}
+          {render=="Albums"&&<Albums setCheckIsTrue={setCheckIsTrue}/>}
         </div>
         
       </div>
@@ -74,14 +80,19 @@ const DIV = styled.div`
   .favorite-main{
     border: 0px solid red;
     width:100%;
+    /* height:5000px; */
     display:flex;
     flex-direction:column;
     gap:1rem;
     color: #fff;
+    background-color: #000000b9;
     /* background: repeating-linear-gradient(to right, #ff0000, #00ff00 20%, #0000ff 40%); */
-    /* background: linear-gradient(to bottom, #ff0000, #00ff00); */
+    /* background: linear-gradient(to bottom, #eb06cc9b 0%, #000000b9 80%); */
+ /* background: repeating-linear-gradient(to bottom, #eb06cc9b 50%, #0000009b 50%); */
+ /* background: repeating-linear-gradient(to bottom, #eb06cc9b 0%, #eb06cc9b 30%,#0000009b 30%, #0000009b 100%); */
+ /* background: linear-gradient(to bottom, #eb06cc9b 0%, #eb06cc9b 30%,#0000009b 30%, #0000009b 100%); */
 
-    background-color: #0000009b;
+    /* background-color: #eb06cc9b; */
 
   }
 .my-favorite{
@@ -164,8 +175,9 @@ const DIV = styled.div`
   .search-input{
     border-radius: 30px;
     padding: .3rem 1rem;
-    background-color: #0000009b;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
+    z-index:-1;
     outline: none;
     border: 0rem;
   }
@@ -177,5 +189,6 @@ const DIV = styled.div`
   /* style={{width:"350px", borderRadius:"30px", height:"50px", border:"none", paddingLeft:"35px", color:"#H8H8H8", fontSize:"17px"}} */
   .multiple-render{
     border: 0px solid cyan;
+    /* height:400px; */
   }
 `;

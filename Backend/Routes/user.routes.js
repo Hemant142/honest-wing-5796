@@ -20,12 +20,14 @@ const userRouter = express.Router();
 
 // This is a user route which will provid the all the users data
 userRouter.get("/", async (req, res) => {
+
   try {
     const users = await UserModel.find();
     res.status(200).json({ users: users });
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
+
 });
 
 //This is a user registration route where user can register him self

@@ -11,11 +11,13 @@ const auth = async(req, res, next) => {
             let existingToken = await BlacklistModel.find({
                 blacklist : {$in : token}
             });
-
-            if(existingToken.length >= 0){
+           
+            if(existingToken.length > 0){
+               
                 return res.status(400).json({error : "Please Login again!"});
             }else{
                 let decoded = jwt.verify(token, SECRET_KEY);
+                console.log({decoded});
                 req.body.userID = decoded.userID;
                 req.body.username = decoded.username;
                 return next();
