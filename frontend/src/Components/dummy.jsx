@@ -123,6 +123,10 @@ export default function Dummy() {
 
      </Box>
 
+
+
+
+
      <Box width={"170px"}  height={"270px"} backgroundColor={"#2C2C2C"} color={"white"} borderRadius={"4px"} marginLeft={"50px"}>
      <Image
        className="hover-zoom"
@@ -137,7 +141,7 @@ export default function Dummy() {
 
      </Box>
 
-     
+    
 
 
    
