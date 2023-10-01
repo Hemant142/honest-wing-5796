@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
 
     <div style={{display:"flex",alignItems:"center",  height:"70px",backgroundColor:"#2C2C2C"
-    , width:"100%" }}>
+    , width:"100%",  }}>
 
     <InputGroup style={{ marginLeft:"70px"}}>
       <InputLeftElement
