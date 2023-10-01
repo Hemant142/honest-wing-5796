@@ -5,11 +5,13 @@ import {
   USER_LOGIN_SUCCESS,
   USER_RESET_SUCCESS,
   USER_SIGNUP_SUCCESS,
+  VALID_USER_LOGOUT_SUCCESS,
 } from "../actionTypes";
 
 let initialState = {
   loading: false,
   error: false,
+  userdata : {},
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -50,6 +52,11 @@ export const reducer = (state = initialState, { type, payload }) => {
         error: true,
       };
     }
+    case VALID_USER_LOGOUT_SUCCESS: {
+      return {
+          ...state, logout_loading: false, userdata : {},
+      }
+  }
 
     default:
       return state;
