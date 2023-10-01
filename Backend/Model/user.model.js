@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
     dob : {type : String},
     // age : {type : Number},
     // role : {type : String},
-    verified:Boolean
+    verified:Boolean,
+    // token: String,
 },{
     //making version key false to not get it in to database automaticlly
     versionKey : false

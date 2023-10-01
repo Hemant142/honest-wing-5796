@@ -8,8 +8,11 @@ const { FavoriteSongRoute } = require("./Routes/Favirote.Route");
 const app=express();
 app.use(cors())
 
-app.use(express.json())
+// app.set("views", __dirname + "/views"); 
 
+app.use(express.json())
+app.set("view engine", "ejs");
+app.use(express.urlencoded({extended:false}))
 app.get("/",async(req,res)=>{
     res.setHeader("Content-type", "text/html")
     res.send("<h1>Welcome to the Sare Gama server</h1>")

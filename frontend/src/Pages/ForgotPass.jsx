@@ -33,13 +33,52 @@ export default function ForgotPass() {
   const toast = useToast();
   const loading = useSelector((store) => store.authReducer.loading);
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(email)
-    axios.post(`http://localhost:8080/users/reset-password`,email)
-    .then((res)=>console.log(res.data,"userRefister"))
-    
-  };
+  const handleSubmit= (e)=>{
+    e.preventDefault();
+
+    let data = {
+        email: email
+    }
+    dispatch(userforgot(data)).then((res)=>{
+
+        dispatch({type:USER_FORGOT_SUCCESS})
+        console.log(res);
+
+        if(res.data.message==="Password reset link sent to your email account, check the spam folder"){
+            setEmail("")
+            setText("We have sent one Link to Your Email to Reset Your password. Please Open your email and Check.")
+        }else if(res.data.error==="User Not Found!"){
+            setText("")
+            toast({
+                title: `${res.data.error}`,
+                position: "bottom",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            })
+        }else{
+            setText("")
+            toast({
+                title: `Something Went Wrong, Try again!!`,
+                status: 'error',
+                position: "bottom",
+                duration: 3000,
+                isClosable: true,
+            })
+        }
+
+    }).catch((err)=>{
+        dispatch({type:USER_FAIL})
+        setText("")
+        toast({
+            title: `Something Went Wrong, Try again!!`,
+            status: 'error',
+            position: "bottom",
+            duration: 3000,
+            isClosable: true,
+          })
+    })
+}
   return (
     <Flex
       justifyContent="space-between"

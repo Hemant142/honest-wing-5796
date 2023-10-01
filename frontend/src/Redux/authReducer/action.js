@@ -22,3 +22,15 @@ export const userlogout = (token) => (dispatch)=> {
             "Authorization":token
         }})
 }
+
+
+export const userforgot = (data)=> (dispatch)=>{
+    // console.log(data)
+    dispatch({type:USER_LOADING})
+    return axios.post("http://localhost:8080/users/forgot",data);
+}
+
+export const usereset = (token,id,data)=> (dispatch)=>{
+    dispatch({type:USER_LOADING})
+    return axios.post(`http://localhost:8080/users/resetpassword/${id}/${token}`,data);
+}
