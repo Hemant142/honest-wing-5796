@@ -43,7 +43,7 @@ border: 0px solid red;
 
 /* z-index: 1; */
 position: fixed;
-top:18%;
+top:16%;
 left: 34%;
 box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 .primium-main{
@@ -58,7 +58,7 @@ box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     /* align-items: center; */
     /* background-color: #fff; */
     background-image: url("https://cdn.pixabay.com/photo/2014/01/31/11/56/level-255394_1280.jpg");
-    height: 200px;
+    height: 150px;
 }
 
 

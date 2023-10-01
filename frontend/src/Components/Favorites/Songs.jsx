@@ -4,7 +4,7 @@ import NoFavoriteSong from './NoFavoriteSong';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 const Song = ({setCheckIsTrue}) => {
-  const arr=new Array(10).fill(0);
+  const arr=new Array(20).fill(0);
 
   return (
     arr.length>0?<DIV>
@@ -47,6 +47,7 @@ const DIV= styled.div`
   border:0px solid #4807e2;
   display: flex;
   flex-direction: column;
+  padding-bottom: 2rem;
   /* width: 400px; */
   gap: .5rem;
   /* overflow-y: 2; */
@@ -92,11 +93,15 @@ const DIV= styled.div`
   color:green;
   font-size: 25px;
   font-weight:600;
-  color: red;
+  color: #45bd45;
   /* border-radius: 50%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.heart:hover{
+  color: #34ca34;
+  font-size: 27px;
 }
 
 `

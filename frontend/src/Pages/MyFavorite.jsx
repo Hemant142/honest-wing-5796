@@ -86,10 +86,10 @@ const DIV = styled.div`
     gap:1rem;
     color: #fff;
     background-color: #000000b9;
-    /* background: repeating-linear-gradient(to right, #ff0000, #00ff00 20%, #0000ff 40%); */
+    /* background: repeating-linear-gradient(to right, #ff0000, #00ff00 20%, #f01101f0  40%); */
     /* background: linear-gradient(to bottom, #eb06cc9b 0%, #000000b9 80%); */
  /* background: repeating-linear-gradient(to bottom, #eb06cc9b 50%, #0000009b 50%); */
- /* background: repeating-linear-gradient(to bottom, #eb06cc9b 0%, #eb06cc9b 30%,#0000009b 30%, #0000009b 100%); */
+ background: linear-gradient(to bottom, #dd07079b 0px, #dd07079b 268px,#0000009b 30%, #0000009b 100%);
  /* background: linear-gradient(to bottom, #eb06cc9b 0%, #eb06cc9b 30%,#0000009b 30%, #0000009b 100%); */
 
     /* background-color: #eb06cc9b; */
@@ -132,15 +132,22 @@ const DIV = styled.div`
     cursor: pointer;
     font-size: 18px;
   font-weight:650;
-  background: linear-gradient(to right, #547a7a 0%, #52b1b1 50%, #08e6e6 100%);
+  background-color: #45bd45;
+  /* background: linear-gradient(to right, #547a7a 0%, #52b1b1 50%, #08e6e6 100%); */
+  /* background: linear-gradient(90deg, rgba(246,0,203,1) 0%, rgba(0,212,255,1) 100%, rgba(0,234,247,1) 100%); */
   /* background: linear-gradient(to right, #ff0000 0%, #00ff00 50%, #0000ff 100%); */
 
    
   }
   .play-btn:hover{
-    background: linear-gradient(to left top,  #0ee6e6 0%,  #4d6969 50%, #248080 100%);
+    /* background: linear-gradient(to left top,  #0ee6e6 0%,  #4d6969 50%, #248080 100%); */
+    background-color: #34ca34;
+    /* width: 124px;
+    height: 52px; */
+    padding: .3rem;
+
   }
-  
+ 
   .primium{
     width: 50px;
     height: 50px;
