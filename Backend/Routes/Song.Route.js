@@ -15,7 +15,7 @@ SongRoute.get("/", async (req, res) => {
   // liked: Number,
   // disliked: Number,
   try {
-    const { catogary, rating, title, artist, q, sort, order, page, limit } =
+    const { catogary, rating,language, title, artist,genre, q, sort, order, page, limit } =
       req.query;
     // console.log({catogary, rating, title, artist, q, sort, order, page, limit });
     //  for example  basic Url = "http://localhost:8080/songs?page=2&limit=2&sortBy=asc"
@@ -58,7 +58,8 @@ SongRoute.get("/", async (req, res) => {
       query.$or = [
         { title: new RegExp(q, "i") },
         { artist: new RegExp(q, "i") },
-        { catogary: new RegExp(q, "i") },
+        { genre: new RegExp(q, "i") },
+        { language: new RegExp(q, "i") },
       ];
     }
 

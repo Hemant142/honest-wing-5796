@@ -10,6 +10,7 @@ import Cookies from 'js-cookie'
 import Player from './Player'
 
 const MyFavoriteMain = () => {
+
   const [checkIsTrue,setCheckIsTrue]=useState(false)
   const token = Cookies.get("login_token");
 
@@ -24,12 +25,17 @@ const MyFavoriteMain = () => {
    < Navbar/>
 </div>
   {/* {!checkIsTrue? */}
-  <MyFavorite setCheckIsTrue={setCheckIsTrue}/> 
+  <div className='my-favorite-box'>
+
+  </div>
+  <MyFavorite /> 
 
   {/* :<SingleSong/>}  */}
 </div>
       </div>
+      <div >
       < Footer/>
+      </div>
       <div style={{ position: "fixed", bottom: 0 , width:"100%"}}>
       {token?(<Player/>):(<Add/>)}
     </div>
@@ -45,16 +51,22 @@ const DIV= styled.div`
 display: flex;
 width:100%;
 margin: auto;
-
+/* background-color:#0000009b; */
   }
   .side-navbar{
 /* width: 24%; */
 border: 0px solid green;
   }
+  .my-favorite-box{
+    margin-top: 69px;
+    /* margin-top: 200px; */
+    margin-bottom: 50px;
+/* border: 3px solid blue; */
+  }
 .navbar{
   width: 77%;
   margin-left: 23%;
-
-  border: 0px solid blue;
+  /* margin: auto; */
+ 
 }
 `
