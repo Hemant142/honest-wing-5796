@@ -5,6 +5,7 @@ import {
   Image,
   SimpleGrid,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 
 import Sidebar from "../Components/Sidebar";
@@ -21,7 +22,9 @@ import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 import "./Songs.css";
 import Player from "./Player";
 import Cookies from "js-cookie";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
 
 export default function Songs() {
   const token = Cookies.get("login_token");
@@ -29,18 +32,85 @@ export default function Songs() {
   const [songs, setSongs] = useState([]);
   const [hoveredSong, setHoveredSong] = useState(null);
   const [liked, setLiked] = useState(false);
-
+  const [SearchPrarams,setSeachParams]=useSearchParams();
+  const location=useLocation()
+  const toast = useToast();
+  const dispatch=useDispatch()
+    const {FavoriteSongData}=useSelector(state=>state.FavoriteSongReducer)
+    // console.log({FavoriteSongData})
   const [index, setIndex] = useState(0);
+  console.log({index,songs})
   let URL = `http://localhost:8080/songs/`;
-  const fetchSongs = () => {
-    axios.get(URL).then((res) => setSongs(res.data.data));
+  const fetchSongs = (query) => {
+    axios.get(URL,query).then((res) => setSongs(res.data.data)).catch(err=>{
+      console.log({err});
+    })
   };
   useEffect(() => {
-    fetchSongs();
-  }, []);
+    let paramObj = {
+      params: {
+        q:SearchPrarams.get("q")
+      },
+    };
+    fetchSongs(paramObj);
+  }, [location]);
 
-  const toggleLike = () => {
-    setLiked(!liked);
+  // const toggleLike = () => {
+  //   setLiked(!liked);
+  // };
+
+  // artist: "Diljit Dosanjh";
+  //  audio: "https://cdnsongs.com/music/data/Punjabi/202108/MoonChild_Era/128/Lover.mp3";
+  //  avatar: "https://www.pagalworld.pw/GpE34Kg9Gq/113515/145952-lover-diljit-dosanjh-mp3-song-300.jpg";
+  //  genre: "Indian POP";
+  // id: 4;
+  //  language: "Panjabi";
+  //  title: "LOVER";
+  // _id: "651a75e120a97f3e7bd3c462";
+  const handleAddToFavorite = (item) => {
+      let SongDetails = {
+      title: item.title,
+      avatar: item.avatar,
+      audio: item.audio,
+      genre: item.genre,
+      artist: item.artist,
+      language: item.language,
+      songId:item._id
+    };
+
+    let bag=true;
+    if(Array.isArray(FavoriteSongData)){
+      for(let el of FavoriteSongData){
+        if(el.songId==item._id){
+          bag=false
+        }
+      }
+    }
+    if(bag){
+      dispatch(AddFavoriteSong(SongDetails)).then(res=>{
+        dispatch(GetAllFavoriteSong())
+        toast({
+          title: `You like this song`,
+          position: "bottom",
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+      })
+      })
+    }else{
+      dispatch(DeletFavoriteSong(item._id)).then(res=>{
+        console.log({res})
+        dispatch(GetAllFavoriteSong())
+        toast({
+          title: `You dish like this song`,
+          position: "bottom",
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+      })
+      })
+
+    }
   };
 
   return (
@@ -87,7 +157,6 @@ export default function Songs() {
                         width={400}
                         height={200}
                       />
-                       
 
                       <Heading size={"md"} paddingLeft={2}>
                         {ele.title}
@@ -95,7 +164,7 @@ export default function Songs() {
                       <Text paddingLeft={2}>{ele.artist}</Text>
                     </Box>
 
-                    <Box >
+                    <Box>
                       <Button
                         className="hover-button"
                         borderRadius={"50%"}
@@ -110,21 +179,19 @@ export default function Songs() {
                         <FontAwesomeIcon icon={faPlay} />
                       </Button>
                       <Button
-                        className={`like-button ${liked ? "liked" : ""}`
-                      }
-                      // borderRadius={"50%"}
+                        className={`like-button ${liked ? "liked" : ""}`}
+                        // borderRadius={"50%"}
                         // display={"none"}
                         marginTop={"-280px"}
                         marginRight={"150px"}
                         position={"absolute"}
                         backgroundColor="transparent"
                         // color={"white"}
-                        onClick={toggleLike}
+                        onClick={() => handleAddToFavorite(ele)}
                       >
-                        <FontAwesomeIcon icon={faHeart}  />
+                        <FontAwesomeIcon icon={faHeart} />
                         Like
                       </Button>
-                     
                     </Box>
                   </Box>
                 ))

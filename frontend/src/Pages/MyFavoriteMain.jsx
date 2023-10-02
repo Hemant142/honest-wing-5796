@@ -12,6 +12,7 @@ import Player from './Player'
 const MyFavoriteMain = () => {
 
   const [checkIsTrue,setCheckIsTrue]=useState(false)
+   const [sowPopup,setSow]= useState(false)
   const token = Cookies.get("login_token");
 
     return (
@@ -22,13 +23,13 @@ const MyFavoriteMain = () => {
 </div>
 <div className='navbar'>
 <div className='side-navbar' style={{left:"23%", width:"77%",position:"fixed"}}>
-   < Navbar/>
+   < Navbar setSow={setSow}/>
 </div>
   {/* {!checkIsTrue? */}
   <div className='my-favorite-box'>
 
   </div>
-  <MyFavorite /> 
+  <MyFavorite  const sowPopup={sowPopup} setSow ={setSow} /> 
 
   {/* :<SingleSong/>}  */}
 </div>

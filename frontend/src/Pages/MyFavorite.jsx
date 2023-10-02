@@ -14,10 +14,10 @@ import { GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
 import Loader from "../Components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
-export default function MyFavorite() {
+export default function MyFavorite({sowPopup,setSow}) {
   const [render, setRender] = useState("Songs");
   const [sowInput,setSowInput]=useState(false)
-  const [sowPopup,setSow]= useState(false)
+ 
   const [song,setSong]=useState("")
  const dispatch=useDispatch();
 
@@ -75,7 +75,7 @@ console.log({res})
           <div className="play-btn">
             {/* <h1>Play</h1> */}
             {/* <FontAwesomeIcon icon={faPlay} className="palay-icon"/> */}
-            <FontAwesomeIcon icon={faPause} className="palay-icon"/>
+            {/* <FontAwesomeIcon icon={faPause} className="palay-icon"/> */}
           </div>
           <div
             className="primium"
@@ -182,7 +182,7 @@ const DIV = styled.div`
     padding: 0.3rem 1rem;
   }
 
-  .play-btn{
+  play-btn{
     width: 55px;
     height: 55px;
 
@@ -204,7 +204,7 @@ const DIV = styled.div`
    
 
   }
-  .play-btn:hover {
+  play-btn:hover {
     /* background: linear-gradient(to left top,  #0ee6e6 0%,  #4d6969 50%, #248080 100%); */
     background-color: #34ca34;
 

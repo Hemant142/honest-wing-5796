@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input, InputGroup, InputLeftElement, useToast } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faHome } from "@fortawesome/free-solid-svg-icons";
@@ -11,9 +11,27 @@ import {
   USER_FAIL,
   VALID_USER_LOGOUT_SUCCESS,
 } from "../Redux/actionTypes";
-export default function Navbar() {
+export default function Navbar({setSow}) {
   const token = Cookies.get("login_token");
-  // console.log(token, "Token");
+  const [SearchPrarams,setSeachParams]=useSearchParams();
+  let initialSearch= SearchPrarams.get("q")
+const [q,setQuery] = useState(initialSearch||"")
+
+let id;
+const handleSearch=(e)=>{
+  setQuery(e.target.value)
+  if(id){
+    clearTimeout(id)
+  }
+  id=setTimeout(()=>{
+let QueryParam={}
+     q&&(QueryParam.q=q)
+     setSeachParams(QueryParam)
+
+  },2000)
+     
+}
+
   const toast = useToast();
   const dispatch = useDispatch();
   const handleLogout = (e) => {
@@ -81,7 +99,7 @@ export default function Navbar() {
           children={<SearchIcon color="gray.600" />}
           style={{ marginTop: "7px" }}
         />
-        <Input
+        <Input value={q} onChange={e=>handleSearch(e)}
           style={{
             width: "100%",
             borderRadius: "30px",
@@ -176,7 +194,7 @@ export default function Navbar() {
       </div>):(
       // If logged in
       <div style={{ display: "flex", marginLeft: "10px" }}>
-      <button
+      <button onClick={()=>setSow(true)}
         style={{
           width: "100px",
           backgroundColor: "white",

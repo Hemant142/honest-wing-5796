@@ -9,6 +9,7 @@ import { ImPause2 } from "react-icons/im";
 import { HiSpeakerWave } from "react-icons/hi2";
 import axios from "axios";
 import styled from "styled-components";
+import { useLocation, useSearchParams } from "react-router-dom";
 const Player = ({index}) => {
   const [songs, setSongs] = useState([]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -18,6 +19,8 @@ const Player = ({index}) => {
   const [volume, setVolume] = useState(1); // State to track volume (1 is full volume)
   const [isVolumeControlVisible, setVolumeControlVisible] = useState(false); // State to show/hide volume control pop-up
   const audioRef = useRef(null);
+   const [SearchPrarams,setSeachParams]=useSearchParams();
+   const location= useLocation()
 // console.log(index,"index")
 
   const formatTime = (seconds) => {
@@ -126,14 +129,18 @@ const Player = ({index}) => {
   };
 
   let URL = `http://localhost:8080/songs/`;
-  const fetchSongs = () => {
-    axios.get(URL).then((res) => setSongs(res.data.data))
+  const fetchSongs = (query) => {
+    axios.get(URL,query).then((res) => setSongs(res.data.data))
     .catch((error)=>console.log(error))
   };
   useEffect(() => {
-    // Fetch songs data from your backend API
-    fetchSongs()
-  }, []);
+    let paramObj = {
+      params: {
+        q:SearchPrarams.get("q")
+      },
+    };
+    fetchSongs(paramObj);
+  }, [location]);
 
   return (
 

@@ -10,7 +10,7 @@ const NoFavoriteSong = () => {
  <p>Keep exploring and find your favorite</p>
  <button onClick={()=>{
     setTimeout(() => {
-        navigate("/")
+        navigate("/songs")
     }, 500);
 }
     }>
