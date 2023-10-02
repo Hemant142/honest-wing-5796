@@ -10,6 +10,7 @@ export default function Sidebar() {
         flexDirection: "column",
         backgroundColor: "#2C2C2C",
         width: "100%",
+       height:"100%"
       }}
     >
       <div
@@ -100,7 +101,7 @@ export default function Sidebar() {
             borderRadius: "6px",
             margin: "20px",
             paddingTop: "20px",
-            paddingBottom: "20px",
+            paddingBottom: "55px",
           }}
         >
           <h3 style={{ color: "white", height: "30px", margin: "auto" }}>
