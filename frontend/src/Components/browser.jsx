@@ -4,23 +4,26 @@ import {
    
    Flex,
    Box,
-   
+   Grid,
    Image
 
  } from '@chakra-ui/react'
-
+import "../Pages/css/home.css"
 
 export default function Browser() {
   return (
     
-<Box  marginLeft={"23%"} marginTop={"70px"} padding={"5px"} backgroundColor={"#2C2C2C"} zIndex={"0"}>
+<Box  >
 
     <Box backgroundColor={"black"} borderRadius={"5px"} padding={"5px"}>
     <p style={{marginLeft:"50px", marginTop:"10px", fontFamily:"monospace", fontSize:"30px", fontWeight:"bolder", color:"white"}}>Recently played</p>
 <Flex
   marginTop={"50px"}
   justifyContent={"flex-start"}
+className='grid'
 
+flexWrap="wrap" 
+      gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)", sm:"repeat(3,1fr" }} 
  >
   <Box
   width={"170px"}
@@ -30,6 +33,7 @@ export default function Browser() {
   borderRadius={"4px"}
   marginLeft={"50px"}
   zIndex={"0"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -108,8 +112,13 @@ export default function Browser() {
 <p style={{marginLeft:"50px", marginTop:"90px", fontSize:"30px", fontWeight:"bolder", color:"white",}}>Made For You</p>
 <Flex
   marginTop={"50px"}
-  justifyContent={"space-around"}
-
+  alignItems={"space-between"}
+  justifyContent={"flex-start"}
+className='grid'
+flexWrap="wrap" 
+      gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)", sm:"repeat(3,1fr" }} 
+      
+      gridGap={"20px"}
  >
 <Box
   width={"170px"}
@@ -118,6 +127,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -182,6 +192,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -282,8 +293,10 @@ export default function Browser() {
 <p style={{marginLeft:"50px", marginTop:"90px",fontSize:"30px", fontWeight:"bolder", color:"white"}}>Your top mixes</p>
 <Flex
   marginTop={"50px"}
-  justifyContent={"space-around"}
-
+  justifyContent={"flex-start"}
+className='grid'
+flexWrap="wrap" 
+      gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)", sm:"repeat(3,1fr" }} 
  >
 <Box
   width={"170px"}
@@ -292,6 +305,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -388,6 +402,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -456,8 +471,10 @@ export default function Browser() {
 <p style={{marginLeft:"50px", marginTop:"90px",  fontSize:"30px", fontWeight:"bolder", color:"white"}}>Based on your recent listening</p>
 <Flex
   marginTop={"50px"}
-  justifyContent={"space-around"}
-
+  justifyContent={"flex-start"}
+className='grid'
+flexWrap="wrap" 
+      gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)", sm:"repeat(3,1fr" }} 
  >
 <Box
   width={"170px"}
@@ -466,6 +483,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -562,6 +580,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -629,8 +648,10 @@ export default function Browser() {
 <p style={{marginLeft:"50px", marginTop:"90px",fontSize:"30px", fontWeight:"bolder", color:"white"}}>Best of artists</p>
 <Flex
   marginTop={"50px"}
-  justifyContent={"space-around"}
-
+  justifyContent={"flex-start"}
+className='grid'
+flexWrap="wrap" 
+      gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)", sm:"repeat(3,1fr" }} 
  >
 <Box
   width={"170px"}
@@ -639,6 +660,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -735,6 +757,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -802,8 +825,10 @@ export default function Browser() {
 <p style={{marginLeft:"50px", marginTop:"90px",fontSize:"30px", fontWeight:"bolder", color:"white"}}>India's best</p>
 <Flex
   marginTop={"50px"}
-  justifyContent={"space-around"}
-
+  justifyContent={"flex-start"}
+className='grid'
+flexWrap="wrap" 
+      gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)", sm:"repeat(3,1fr" }} 
  >
 <Box
   width={"170px"}
@@ -812,6 +837,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -908,6 +934,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -976,8 +1003,11 @@ export default function Browser() {
 <p style={{marginLeft:"50px", marginTop:"90px", fontSize:"30px", fontWeight:"bolder", color:"white"}}>More like Sachet Tondon</p>
 <Flex
   marginTop={"50px"}
-  justifyContent={"space-around"}
-
+  justifyContent={"flex-start"}
+className='grid'
+flexWrap="wrap" 
+margin={"20px"}
+      gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)", sm:"repeat(3,1fr" }} 
  >
 <Box
   width={"170px"}
@@ -986,6 +1016,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -1050,6 +1081,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -1114,6 +1146,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -1150,8 +1183,10 @@ export default function Browser() {
 <p style={{marginLeft:"50px", marginTop:"90px", fontSize:"30px", fontWeight:"bolder", color:"white"}}>Throwback</p>
 <Flex
   marginTop={"50px"}
-  justifyContent={"space-around"}
-
+  justifyContent={"flex-start"}
+  className='grid'
+  flexWrap="wrap" 
+      gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)", sm:"repeat(3,1fr" }} 
  >
 <Box
   width={"170px"}
@@ -1160,6 +1195,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
@@ -1255,6 +1291,7 @@ export default function Browser() {
   color={"white"}
   borderRadius={"4px"}
   marginLeft={"50px"}
+  marginBottom={"30px"}
   style={{
     transition: "background-color 0.3s ease, filter 0.3s ease",
   }}
