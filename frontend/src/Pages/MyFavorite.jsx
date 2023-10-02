@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
@@ -8,17 +8,30 @@ import Albums from "../Components/Favorites/Albums";
 import Song from "../Components/Favorites/Songs";
 import Playlists from "../Components/Favorites/Playlists";
 import PrimiumPopup from "../Components/Favorites/PrimiumPopup";
-export default function MyFavorite({setCheckIsTrue}) {
+import { useDispatch, useSelector } from "react-redux";
+import { GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
+import Loader from "../Components/Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPause, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
+export default function MyFavorite() {
   const [render, setRender] = useState("Songs");
   const [sowInput,setSowInput]=useState(false)
   const [sowPopup,setSow]= useState(false)
- 
   const [song,setSong]=useState("")
-  console.log({song})
-  console.log({ render });
- 
-  const handleChange=(e)=>{
+ const dispatch=useDispatch();
 
+ const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
+console.log({isLoading,FavoriteSongData,isError})
+
+ useEffect(()=>{
+dispatch(GetAllFavoriteSong()).then(res=>{
+console.log({res})
+})
+ },[])
+
+
+
+  const handleChange=(e)=>{
     setSong(e.target.value)
   }
   return (
@@ -38,7 +51,9 @@ export default function MyFavorite({setCheckIsTrue}) {
         
         <div className="paly-primium">
           <div className="play-btn">
-            <h1>Play</h1>
+            {/* <h1>Play</h1> */}
+            {/* <FontAwesomeIcon icon={faPlay} className="palay-icon"/> */}
+            <FontAwesomeIcon icon={faPause} className="palay-icon"/>
           </div>
           <div className="primium" onClick={(e)=>{
                setSow(true)
@@ -50,7 +65,7 @@ export default function MyFavorite({setCheckIsTrue}) {
           }}>{"#"}</div>
         </div>
         <div className="search-song">
-          <div className="song">SONG(3)</div>
+          <div className="song">{`SONG(${FavoriteSongData.length})`}</div>
           <div className="search">
             <SearchIcon className="search-icon" onClick={(e)=>{
               setSowInput(!sowInput)
@@ -63,12 +78,14 @@ export default function MyFavorite({setCheckIsTrue}) {
             </InputGroup>}
           </div>
         </div>
-        <div className="multiple-render">
-          {render=="Artists"&&<Artist setCheckIsTrue={setCheckIsTrue}/>}
-          {render=="Songs"&&<Song setCheckIsTrue={setCheckIsTrue}/>}
-          {render=="Playlists"&&<Playlists setCheckIsTrue={setCheckIsTrue}/>}
-          {render=="Albums"&&<Albums setCheckIsTrue={setCheckIsTrue}/>}
-        </div>
+       {isLoading?<div className="loader">
+        <Loader />
+       </div>:<div className="multiple-render">
+          {render=="Artists"&&<Artist />}
+          {render=="Songs"&&<Song FavoriteSongData={FavoriteSongData} />}
+          {render=="Playlists"&&<Playlists />}
+          {render=="Albums"&&<Albums />}
+        </div>}
         
       </div>
     </DIV>
@@ -76,23 +93,20 @@ export default function MyFavorite({setCheckIsTrue}) {
 }
 
 const DIV = styled.div`
-  
+  background-color: #000000d3;
+  /* background-color: #000000ce; */
   .favorite-main{
-    border: 0px solid red;
-    width:100%;
+    margin-bottom: 10px;
+    /* border: 5px solid red; */
+    width:99%;
     /* height:5000px; */
     display:flex;
     flex-direction:column;
     gap:1rem;
     color: #fff;
-    background-color: #000000b9;
-    /* background: repeating-linear-gradient(to right, #ff0000, #00ff00 20%, #f01101f0  40%); */
-    /* background: linear-gradient(to bottom, #eb06cc9b 0%, #000000b9 80%); */
- /* background: repeating-linear-gradient(to bottom, #eb06cc9b 50%, #0000009b 50%); */
+   
  background: linear-gradient(to bottom, #dd07079b 0px, #dd07079b 268px,#0000009b 30%, #0000009b 100%);
  /* background: linear-gradient(to bottom, #eb06cc9b 0%, #eb06cc9b 30%,#0000009b 30%, #0000009b 100%); */
-
-    /* background-color: #eb06cc9b; */
 
   }
 .my-favorite{
@@ -122,15 +136,16 @@ const DIV = styled.div`
 
   }
   .play-btn{
-    width: 120px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     /* border: 1px solid #fff; */
-    border-radius: 30px;
+    /* padding:5px; */
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 30px;
   font-weight:650;
   background-color: #45bd45;
   /* background: linear-gradient(to right, #547a7a 0%, #52b1b1 50%, #08e6e6 100%); */
@@ -142,13 +157,13 @@ const DIV = styled.div`
   .play-btn:hover{
     /* background: linear-gradient(to left top,  #0ee6e6 0%,  #4d6969 50%, #248080 100%); */
     background-color: #34ca34;
-    /* width: 124px;
-    height: 52px; */
+    width: 57px;
+    height: 57px;
     padding: .3rem;
 
   }
  
-  .primium{
+ .primium{
     width: 50px;
     height: 50px;
     border: 0.06rem solid #ffffffd5;
@@ -197,5 +212,11 @@ const DIV = styled.div`
   .multiple-render{
     border: 0px solid cyan;
     /* height:400px; */
+  }
+  .loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8%;
   }
 `;

@@ -23,9 +23,6 @@ export default function Navbar() {
     <a style={{textDecoration:"none", color:"#969696", fontSize:"18px", margin:"5px"}}  href="">Download</a>
     </div>
 
-    
-     
-
      <button style={{width:"200px", backgroundColor:"black", color:"white", borderRadius:"30px", height:"50px", border:"none", fontSize:"16px", fontWeight:"bold"}}>Sign Up</button>
 
      <button style={{width:"200px", backgroundColor:"white", color:"black", borderRadius:"30px", marginLeft:"10px", marginRight:"25px", height:"50px", border:"none", fontWeight:"bold"}}>Log in</button>

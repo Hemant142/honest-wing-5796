@@ -49,8 +49,10 @@ FavoriteSongRoute.post("/add",async(req,res)=>{
 })
 FavoriteSongRoute.delete("/delete/:userId",async(req,res)=>{
     const {userId} = req.params
+    console.log({userId});
     try {
       const checkSong= await FavoriteSongModel.findOne({_id:userId})
+      console.log({checkSong})
       if(checkSong){
     
         if(checkSong.userId==req.body.userId){
