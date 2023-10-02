@@ -38,7 +38,7 @@ FavoriteSongRoute.get("/",async(req,res)=>{
 })
 FavoriteSongRoute.post("/add",async(req,res)=>{
     const data = req.body;
-   
+  //  console.log(data,"daat")
     try {
      const CreatedData= new FavoriteSongModel(data)
      await CreatedData.save()

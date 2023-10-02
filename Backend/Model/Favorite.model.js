@@ -3,10 +3,12 @@ const mongoose=require("mongoose");
 const FavoriteSongSchema=mongoose.Schema({
     title: String,
     avatar: String,
-    play: String,
+    audio: String,
     rating: String,
     catogary: String,
     artist: String,
+    genre:String,
+    language:String,
     liked: Number,
     disliked: Number,
     lyrics: [String],

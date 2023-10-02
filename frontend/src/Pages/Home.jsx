@@ -5,17 +5,19 @@ import Footer from '../Components/footer'
 import Dummy from '../Components/dummy'
 import Add from '../Components/signupad'
 import Browser from '../Components/browser'
+import "../Pages/css/home.css"
 export default function Home() {
   return (
     <>
-     <div style={{display:"flex", width:"100%"}}>
+     <div id='main' >
       
       
       
-      <div style={{width:"23%",position:"fixed"}}>
+      <div id='sidebar' >
       <Sidebar/>
       </div>
-      <div style={{left:"23%", width:"77%",position:"fixed", zIndex:"2"}}>
+
+      <div id='navbar' >
       <Navbar />
       </div>
      
@@ -23,10 +25,13 @@ export default function Home() {
        
        
     </div>
+    <div id='browse'>
     <Browser/>
+    </div>
+   
     {/* <Dummy/> */}
     <Footer/>
-    <div style={{ position: "fixed", bottom: 0 , width:"100%"}}>
+    <div id='player' style={{bottom:"0px", position:"fixed", width:"100%"}} >
       
     <Add/>
     </div>

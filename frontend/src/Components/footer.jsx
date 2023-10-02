@@ -1,8 +1,9 @@
 import React from 'react'
 import { Flex } from '@chakra-ui/react'
+import "../Pages/css/home.css"
 export default function Footer() {
   return (
-  <div style={{paddingLeft:"5px", paddingRight:"5px",backgroundColor:"#2C2C2C",marginTop:"-10px", marginLeft:"23%",marginBottom:"85px"}}>
+  <div id='footer' >
  <Flex style={{ color:"white", justifyContent:"space-around", padding:"26px",backgroundColor:"black"}}>
      <Flex direction={"column"}>
           <h5 style={{fontWeight:"bold"}}>Company</h5>
