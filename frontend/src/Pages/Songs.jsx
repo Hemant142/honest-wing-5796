@@ -17,7 +17,7 @@ import Browser from "../Components/browser";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 import "./Songs.css";
 import Player from "./Player";
 import Cookies from "js-cookie";
@@ -28,7 +28,8 @@ export default function Songs() {
   const [query, setQuery] = useState("");
   const [songs, setSongs] = useState([]);
   const [hoveredSong, setHoveredSong] = useState(null);
-  
+  const [liked, setLiked] = useState(false);
+
   const [index, setIndex] = useState(0);
   let URL = `http://localhost:8080/songs/`;
   const fetchSongs = () => {
@@ -37,7 +38,11 @@ export default function Songs() {
   useEffect(() => {
     fetchSongs();
   }, []);
- 
+
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
   return (
     <>
       <>
@@ -66,7 +71,7 @@ export default function Songs() {
           >
             <SimpleGrid columns={4} spacing={10}>
               {songs.length > 0 ? (
-                songs.map((ele,index) => (
+                songs.map((ele, index) => (
                   <Box className="hover" marginBottom={2}>
                     <Box
                       backgroundColor={"black"}
@@ -82,13 +87,15 @@ export default function Songs() {
                         width={400}
                         height={200}
                       />
+                       
+
                       <Heading size={"md"} paddingLeft={2}>
                         {ele.title}
                       </Heading>
                       <Text paddingLeft={2}>{ele.artist}</Text>
                     </Box>
 
-                    <Box>
+                    <Box >
                       <Button
                         className="hover-button"
                         borderRadius={"50%"}
@@ -98,10 +105,26 @@ export default function Songs() {
                         position={"absolute"}
                         backgroundColor="green"
                         color={"black"}
-                        onClick={()=>setIndex(index)}
+                        onClick={() => setIndex(index)}
                       >
                         <FontAwesomeIcon icon={faPlay} />
                       </Button>
+                      <Button
+                        className={`like-button ${liked ? "liked" : ""}`
+                      }
+                      // borderRadius={"50%"}
+                        // display={"none"}
+                        marginTop={"-280px"}
+                        marginRight={"150px"}
+                        position={"absolute"}
+                        backgroundColor="transparent"
+                        // color={"white"}
+                        onClick={toggleLike}
+                      >
+                        <FontAwesomeIcon icon={faHeart}  />
+                        Like
+                      </Button>
+                     
                     </Box>
                   </Box>
                 ))
@@ -114,10 +137,12 @@ export default function Songs() {
 
         <Footer />
         <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
-          {token ?
-           <Player index={index}/> 
-          // ""
-          : <Add />}
+          {token ? (
+            <Player index={index} />
+          ) : (
+            // ""
+            <Add />
+          )}
         </div>
       </>
     </>
