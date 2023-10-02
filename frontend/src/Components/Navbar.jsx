@@ -67,6 +67,7 @@ export default function Navbar() {
     }}
     >
 
+
         {/* Home Icon (visible on mobile) */}
         <div style={{ display: "none", marginRight: "10px" }}>
         <Link to="/">
@@ -136,6 +137,7 @@ export default function Navbar() {
           Download
         </a>
       </div>
+
 
      <button
         style={{
