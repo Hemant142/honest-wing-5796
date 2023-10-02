@@ -76,9 +76,13 @@ const Player = ({index}) => {
   };
 
   useEffect(()=>{
-    setIsPlaying(true)
-    setCurrentSongIndex(index)
+    // setIsPlaying(true)
+    
+        setCurrentSongIndex(index)
+    
+   
   },[index])
+
   useEffect(() => {
     if (isPlaying) {
       playSong();
@@ -93,8 +97,8 @@ const Player = ({index}) => {
   }, []);
 
   const nextSong = () => {
-    if (index < songs.length - 1) {
-      setCurrentSongIndex(index + 1);
+    if (currentSongIndex < songs.length - 1) {
+      setCurrentSongIndex(currentSongIndex + 1);
       setCurrentPlaybackTime(0);
       setIsPlaying(true);
     } else {
@@ -106,7 +110,7 @@ const Player = ({index}) => {
 
   const previousSong = () => {
     if (currentSongIndex > 0) {
-      setCurrentSongIndex(index - 1);
+      setCurrentSongIndex(currentSongIndex - 1);
       setCurrentPlaybackTime(0);
       setIsPlaying(true);
     } else {
