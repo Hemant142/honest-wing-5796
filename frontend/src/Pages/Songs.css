@@ -1,0 +1,29 @@
+.hover:hover .hover-button{
+    display: block;
+}
+
+.image-hover:hover .hover-button{
+    opacity: 1; 
+}
+
+.image-hover:hover .image {
+    transform: scale(1.05); 
+  }
+
+.rating{
+    display:flex
+   
+}
+.mobilerating{
+ display: none;
+}
+  @media screen and (max-width: 786px) {
+   .rating{
+       display: none
+   }
+   .mobilerating{
+    display: flex;
+   
+
+   }
+  }

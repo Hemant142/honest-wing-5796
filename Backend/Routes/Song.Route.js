@@ -70,18 +70,18 @@ SongRoute.get("/", async (req, res) => {
       sortOptions[sort] = order == "asc" ? 1 : -1; // 1 for ascending, -1 for descending 1
     }
 
-    const pageNumber = parseInt(page) || 1; // page come form query if not then by default 1
-    const pageSize = parseInt(limit) || 10; // limit come form query if not then by default 10
+    // const pageNumber = parseInt(page) || 1; // page come form query if not then by default 1
+    const pageSize = parseInt(limit) || Infinity; // limit come form query if not then by default 10
     const totalproduct = await SongModel.countDocuments(query); // it is use for count totle Song
     const totalPages = Math.ceil(totalproduct / pageSize); // logic for find total page
 
     const data = await SongModel.find(query)
       .sort(sortOptions)
-      .skip((pageNumber - 1) * pageSize)
+      // .skip((pageNumber - 1) * pageSize)
       .limit(pageSize);
     res.json({
       data, // current page Array of SONG list means how many limit you give
-      page: pageNumber, // current page
+      // page: pageNumber, // current page
       totalPages, // total page
       totalResults: totalproduct, //  total number of SONG persent in database
     });

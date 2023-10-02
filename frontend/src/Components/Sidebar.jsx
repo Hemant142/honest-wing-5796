@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Spacer } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
@@ -38,7 +39,8 @@ export default function Sidebar() {
             src="homeicon.png"
             alt="home"
           />
-          <h3 style={{ color: "#787878", marginLeft: "17px" }}>HOME</h3>
+         <Link to={"/"}>
+          <h3 style={{ color: "#787878", marginLeft: "17px" }}>HOME</h3></Link> 
         </div>
 
         <div
@@ -49,12 +51,16 @@ export default function Sidebar() {
             height: "50px",
           }}
         >
+          <Link to={"/songs"}>
+            <div style={{display:"flex"}}>
           <img
             style={{ width: "25px", height: "25px", marginLeft: "28px" }}
             src="searchicon.png"
             alt="search"
           />
           <h3 style={{ color: "#F1F1F1", marginLeft: "17px" }}>Search</h3>
+          </div>
+          </Link>
         </div>
       </div>
 
@@ -75,12 +81,15 @@ export default function Sidebar() {
             height: "50px",
           }}
         >
-          <img
+          <Link to={"/myfavorite"}>
+         <div style={{display:"flex"}}> <img
             style={{ width: "25px", height: "25px", marginLeft: "28px" }}
             src="libraryicon.png"
             alt="search"
           />
           <h3 style={{ color: "#787878", marginLeft: "17px" }}>Your Library</h3>
+          </div>
+          </Link>
         </div>
 
         <div

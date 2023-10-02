@@ -11,6 +11,8 @@ import Logout from "../Pages/logout"
 
 import MyFavoriteMain from '../Pages/MyFavoriteMain'
 import ResetPass from '../Pages/ResetPass'
+import Songs from '../Pages/Songs'
+import Browser from '../Components/browser'
 
 
 export default function AllRoutes() {
@@ -21,6 +23,7 @@ export default function AllRoutes() {
     <div>
         <Routes>
             <Route path='/' element={<Home/>}/>
+            {/* <Route path='/' element={<Browser/>} /> */}
             <Route path='/login' element={<Login/>}/>
           <Route path='/logout' element={<Logout/>}/>
           <Route path="/reset_password/:id/:token" element={<ResetPass/>}></Route>
@@ -28,6 +31,7 @@ export default function AllRoutes() {
             <Route path='/browse' element={<Browse/>}/>
             <Route path='/myfavorite' element={<MyFavoriteMain/>}/>
             <Route path="/forgot_password" element={<ForgotPass />}></Route>
+            <Route path='/songs' element={<Songs/>}></Route>
         </Routes>
     </div>
   )

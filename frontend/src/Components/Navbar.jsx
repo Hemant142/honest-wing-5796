@@ -13,7 +13,7 @@ import {
 } from "../Redux/actionTypes";
 export default function Navbar() {
   const token = Cookies.get("login_token");
-  console.log(token, "Token");
+  // console.log(token, "Token");
   const toast = useToast();
   const dispatch = useDispatch();
   const handleLogout = (e) => {

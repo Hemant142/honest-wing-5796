@@ -5,7 +5,13 @@ import Footer from '../Components/footer'
 import Dummy from '../Components/dummy'
 import Add from '../Components/signupad'
 import Browser from '../Components/browser'
+import Songs from './Songs'
+import Cookies from 'js-cookie'
+import Player from './Player'
+
 export default function Home() {
+  const token = Cookies.get("login_token");
+  console.log(token, "Token");
   return (
     <>
      <div style={{display:"flex", width:"100%"}}>
@@ -25,11 +31,12 @@ export default function Home() {
        
     </div>
     <Browser/>
+    {/* <Songs/> */}
     {/* <Dummy/> */}
     <Footer/>
     <div style={{ position: "fixed", bottom: 0 , width:"100%"}}>
-      
-    <Add/>
+      {token?(<Player/>):(<Add/>)}
+    
     </div>
    
     </>
