@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 import {
@@ -1350,19 +1351,7 @@ margin={"20px"}
 </Box>
 </Flex>
 
-    </Box>
-   
-</Box>
-  
-   
- 
-     
-       
-       
-     
 
-   
-  
-   
-  )
+    </Box>
+  );
 }

@@ -6,9 +6,14 @@ import Navbar from '../Components/Navbar'
 import styled from 'styled-components'
 import SingleSong from '../Components/Favorites/SingleSong'
 import Add from '../Components/signupad'
+import Cookies from 'js-cookie'
+import Player from './Player'
 
 const MyFavoriteMain = () => {
- 
+
+  const [checkIsTrue,setCheckIsTrue]=useState(false)
+  const token = Cookies.get("login_token");
+
     return (
     <DIV>
       <div className='favorite-main'>
@@ -32,7 +37,7 @@ const MyFavoriteMain = () => {
       < Footer/>
       </div>
       <div style={{ position: "fixed", bottom: 0 , width:"100%"}}>
-    <Add/>
+      {token?(<Player/>):(<Add/>)}
     </div>
     </DIV>
   )
