@@ -15,7 +15,8 @@ export default function Home() {
       <div style={{width:"23%",position:"fixed"}}>
       <Sidebar/>
       </div>
-      <div style={{left:"23%", width:"77%",position:"fixed", zIndex:"2"}}>
+
+      <div style={{left:"23%", width:"77%",position:"fixed", zIndex:"2" }}>
       <Navbar />
       </div>
      
