@@ -114,7 +114,10 @@ export default function Songs() {
 
         <Footer />
         <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
-          {token ? <Player index={index}/> : <Add />}
+          {token ?
+           <Player index={index}/> 
+          // ""
+          : <Add />}
         </div>
       </>
     </>

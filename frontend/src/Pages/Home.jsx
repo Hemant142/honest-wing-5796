@@ -41,7 +41,10 @@ export default function Home() {
     {/* <Dummy/> */}
     <Footer/>
     <div style={{ position: "fixed", bottom: 0 , width:"100%"}}>
-      {token?(<Player/>):(<Add/>)}
+      {token?
+      (<Player index={0}/>)
+      // ""
+      :(<Add/>)}
     
 
     </div>
