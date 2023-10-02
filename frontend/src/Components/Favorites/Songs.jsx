@@ -5,13 +5,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from '../../Redux/FavoriteSongReducer/Type';
+import { useToast } from '@chakra-ui/react';
 const Song = ({FavoriteSongData}) => {
-
+const toast =useToast()
   const dispatch=useDispatch()
   const handleRemove=(id)=>{
     dispatch(DeletFavoriteSong(id)).then(res=>{
       console.log({res})
       dispatch(GetAllFavoriteSong())
+      toast({
+        title: `You dish like this song`,
+        position: "bottom",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+    })
     })
   }
 
@@ -155,6 +163,11 @@ align-items:center;
   border: 0px solid blue;
   cursor: pointer;
 
+}
+.singer-name{
+  text-align: center;
+  width:100px;
+  border:0px solid green;
 }
 .image-box{
   border: 0px solid blue;

@@ -25,6 +25,7 @@ try {
     dispatch({type:FAVORITE_SONG_REQUEST})
     return await axios.post(`${BaseURL}/add`,payload,{headers:{Authorization:token}}).then(res=>{
     dispatch({type:POST_FAVORITE_SONG_REQUEST_SUCCESS})
+    console.log({res})
     return res.data
     }).catch(err=>{
         dispatch({type:FAVORITE_SONG_REQUEST_FAIL})

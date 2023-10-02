@@ -12,7 +12,8 @@ const SongSchema = mongoose.Schema({
   disliked: Number,
   language:String,
   userID:String,
-  username:String
+  username:String,
+  color:Number
 
 
 },{versionKey:false});
