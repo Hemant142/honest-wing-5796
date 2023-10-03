@@ -8,10 +8,10 @@ Welcome to SA RE GA MA, your ultimate destination for all things music. Whether 
 
 
 ## Deployed Link
-[Vercel Deployed Link:  SA RE GA MA](https://precious-and-charms.vercel.app/)
+[Vercel Deployed Link:  SA RE GA MA](https://frontend-hla4711e7-hemant142.vercel.app/)
 
-## API Link
-[Server Link:  SA RE GA MA](https://monkeyapi-2-0.onrender.com/)
+## Backend Deployed Link
+[Server Link:  SA RE GA MA](https://graceful-gold-spacesuit.cyclic.cloud/)
 
 ## Tech Stack
 <div>

@@ -44,7 +44,7 @@ export default function Songs() {
     // console.log({FavoriteSongData})
   const [index, setIndex] = useState(0);
   console.log({index,songs})
-  let URL = `http://localhost:8080/songs/`;
+  let URL = `https://graceful-gold-spacesuit.cyclic.cloud/songs/`;
   const fetchSongs = (query) => {
     axios.get(URL,query).then((res) => setSongs(res.data.data)).catch(err=>{
       console.log({err});

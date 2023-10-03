@@ -266,7 +266,7 @@ userRouter.post("/forgot", async (req, res) => {
 // console.log(text)
         let obj = await sendEmail(
           user.email,
-          "Forgot Password @ Recipe Swap",
+          "Forgot Password @ SA RE GA MA",
           text
         );
         // console.log(obj,"Object")
@@ -304,7 +304,7 @@ userRouter.get("/resetpassword/:id/:token", async (req, res) => {
       if (user) {
         jwt.verify(token, process.env.JWT_RESET_KEY )
           
-          res.redirect(`http://localhost:3000/reset_password/${id}/${token}`)
+          res.redirect(`${process.env.URL}/reset_password/${id}/${token}`)
         
       } else {
         res.status(200).json({ error: "Token is expired!", issue: true });
