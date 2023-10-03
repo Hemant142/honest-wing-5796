@@ -26,6 +26,7 @@ export default function Home() {
           <Navbar />
         </div>
       </div>
+      
       <div id="browse">
         <Browser />
 

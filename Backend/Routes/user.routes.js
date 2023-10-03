@@ -125,6 +125,8 @@ userRouter.patch("/update/:id", async (req, res) => {
   }
 });
 
+
+
 //This route is responsible for deleting the user
 // userRouter.delete("/delete/:id", async (req, res) => {
 //   const id = req.params.id;
