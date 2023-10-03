@@ -164,7 +164,7 @@ export default function ResetPass() {
           mt={{ base: "30px", sm: "50px", md: "70px", lg: "70px", xl: "70px" }}
           mb={{ base: "30px", sm: "30px", md: "70px", lg: "70px", xl: "70px" }}
         >
-          <Image w="50%" src={logo} alt="signup" />
+          {/* <Image w="50%" src={logo} alt="signup" /> */}
           <Text
             mt="25px"
             color="#7f07f7f5"

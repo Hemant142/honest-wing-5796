@@ -188,7 +188,7 @@ export default function Login() {
                 <InputLeftElement
                   borderRadius="5px 0px 0px 5px"
                   color="white"
-                  bg="#7f07f7f5"
+                  bg="#9750ddf5"
                 >
                   {envelope}
                 </InputLeftElement>
