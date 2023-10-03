@@ -128,7 +128,7 @@ const Player = ({index}) => {
     audioRef.current.volume = newVolume;
   };
 
-  let URL = `http://localhost:8080/songs/`;
+  let URL = `https://graceful-gold-spacesuit.cyclic.cloud/songs/`;
   const fetchSongs = (query) => {
     axios.get(URL,query).then((res) => setSongs(res.data.data))
     .catch((error)=>console.log(error))
