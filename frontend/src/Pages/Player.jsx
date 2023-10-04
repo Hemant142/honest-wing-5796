@@ -131,19 +131,7 @@ const Player = ({index,songs}) => {
     audioRef.current.volume = newVolume;
   };
 
-  // let URL = `http://localhost:8080/songs/`;
-  // const fetchSongs = (query) => {
-  //   axios.get(URL,query).then((res) => setSongs(res.data.data))
-  //   .catch((error)=>console.log(error))
-  // };
-  // useEffect(() => {
-  //   let paramObj = {
-  //     params: {
-  //       q:SearchPrarams.get("q")
-  //     },
-  //   };
-  //   fetchSongs(paramObj);
-  // }, [location]);
+
 
   return (
 

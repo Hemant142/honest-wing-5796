@@ -14,6 +14,8 @@ import Footer from "../Components/footer";
 import Dummy from "../Components/dummy";
 import Add from "../Components/signupad";
 import Browser from "../Components/browser";
+import { useBreakpointValue } from "@chakra-ui/react";
+
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -25,6 +27,7 @@ import Cookies from "js-cookie";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
+import Loader from "../Components/Loader";
 
 export default function Songs() {
   const token = Cookies.get("login_token");
@@ -33,6 +36,7 @@ export default function Songs() {
   const [hoveredSong, setHoveredSong] = useState(null);
   const [liked, setLiked] = useState(false);
   const [SearchPrarams,setSeachParams]=useSearchParams();
+  const [likedSongs, setLikedSongs] = useState([]);
   const location=useLocation()
   const toast = useToast();
   const dispatch=useDispatch()
@@ -40,7 +44,9 @@ export default function Songs() {
     // console.log({FavoriteSongData})
   const [index, setIndex] = useState(0);
   console.log({index,songs})
-  let URL = `https://graceful-gold-spacesuit.cyclic.cloud/songs`;
+
+  let URL = `https://graceful-gold-spacesuit.cyclic.cloud/songs/`;
+
   const fetchSongs = (query) => {
     axios.get(URL,query).then((res) => setSongs(res.data.data)).catch(err=>{
       console.log({err});
@@ -68,6 +74,7 @@ export default function Songs() {
   //  title: "LOVER";
   // _id: "651a75e120a97f3e7bd3c462";
   const handleAddToFavorite = (item) => {
+    
       let SongDetails = {
       title: item.title,
       avatar: item.avatar,
@@ -111,15 +118,32 @@ export default function Songs() {
       })
 
     }
+
+////////// For LIKE ICON
+    const isLiked = likedSongs.includes(item._id);
+
+    if (!isLiked) {
+      // Add the song to liked songs
+      setLikedSongs([...likedSongs, item._id]);
+    } else {
+      // Remove the song from liked songs
+      setLikedSongs(likedSongs.filter((songId) => songId !== item._id));
+    }
+
   };
+
+  
+  const columns = useBreakpointValue({ base: 1, md: 2, lg: 4, xl: 5 });
+
 
   return (
     <>
       <>
         <div style={{ display: "flex", width: "100%" }}>
-          <div style={{ width: "23%", position: "fixed" }}>
-            <Sidebar />
-          </div>
+          
+        <div id="sidebar" style={{height:"100%"}}>
+          <Sidebar />
+        </div>
 
           <div
             style={{
@@ -138,8 +162,9 @@ export default function Songs() {
             padding={"5px"}
             backgroundColor={"#2C2C2C"}
             zIndex={"0"}
+            id="songs"
           >
-            <SimpleGrid columns={4} spacing={10}>
+            <SimpleGrid columns={columns} spacing={10}>
               {songs.length > 0 ? (
                 songs.map((ele, index) => (
                   <Box className="hover" marginBottom={2}>
@@ -154,7 +179,7 @@ export default function Songs() {
                         src={ele.avatar}
                         alt={ele.title}
                         borderTopRadius={"10px"}
-                        width={400}
+                        width={"100%"}
                         height={200}
                       />
 
@@ -178,25 +203,28 @@ export default function Songs() {
                       >
                         <FontAwesomeIcon icon={faPlay} />
                       </Button>
-                      <Button
-                        className={`like-button ${liked ? "liked" : ""}`}
+                      <button
+                        className={`like-button `}
                         // borderRadius={"50%"}
                         // display={"none"}
-                        marginTop={"-280px"}
-                        marginRight={"150px"}
-                        position={"absolute"}
-                        backgroundColor="transparent"
+                        
                         // color={"white"}
                         onClick={() => handleAddToFavorite(ele)}
                       >
-                        <FontAwesomeIcon icon={faHeart} />
-                        Like
-                      </Button>
+                       <FontAwesomeIcon
+    icon={faHeart}
+    className={`like-icon ${likedSongs.includes(ele._id) ? "liked" : ""}`}
+  />
+                        {/* Like */}
+                      </button>
+                      
                     </Box>
                   </Box>
                 ))
               ) : (
-                <Box></Box>
+                <Box width={1100}> <div className="loader">
+                <Loader />
+               </div>:</Box>
               )}
             </SimpleGrid>
           </Box>
