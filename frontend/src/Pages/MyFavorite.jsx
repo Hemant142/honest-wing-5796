@@ -14,21 +14,21 @@ import { GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
 import Loader from "../Components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
-export default function MyFavorite({sowPopup,setSow}) {
+export default function MyFavorite({sowPopup,setSow,setindex,FavoriteSongData}) {
   const [render, setRender] = useState("Songs");
   const [sowInput,setSowInput]=useState(false)
  
   const [song,setSong]=useState("")
- const dispatch=useDispatch();
+//  const dispatch=useDispatch();
 
- const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
-console.log({isLoading,FavoriteSongData,isError})
+//  const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
+// console.log({isLoading,FavoriteSongData,isError})
 
- useEffect(()=>{
-dispatch(GetAllFavoriteSong()).then(res=>{
-console.log({res})
-})
- },[])
+//  useEffect(()=>{
+// dispatch(GetAllFavoriteSong()).then(res=>{
+// console.log({res})
+// })
+//  },[])
 
 
 
@@ -97,7 +97,7 @@ console.log({res})
           </div>
         </div>
         <div className="search-song">
-          <div className="song">{`SONG(${FavoriteSongData.length})`}</div>
+          <div className="song">{`${render}(${render=="Songs"?FavoriteSongData.length:0})`}</div>
           <div className="search">
             <SearchIcon
               className="search-icon"
@@ -122,14 +122,16 @@ console.log({res})
           </div>
         </div>
 
-       {isLoading?<div className="loader">
+       {/* {isLoading?<div className="loader">
         <Loader />
-       </div>:<div className="multiple-render">
+       </div>: */}
+       <div className="multiple-render">
           {render=="Artists"&&<Artist />}
-          {render=="Songs"&&<Song FavoriteSongData={FavoriteSongData} />}
+          {render=="Songs"&&<Song FavoriteSongData={FavoriteSongData} setindex={setindex}/>}
           {render=="Playlists"&&<Playlists />}
           {render=="Albums"&&<Albums />}
-        </div>}
+        </div>
+       {/* } */}
         
 
       </div>

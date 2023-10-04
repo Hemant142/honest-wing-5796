@@ -6,7 +6,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from '../../Redux/FavoriteSongReducer/Type';
 import { useToast } from '@chakra-ui/react';
-const Song = ({FavoriteSongData}) => {
+const Song = ({FavoriteSongData,setindex}) => {
 const toast =useToast()
   const dispatch=useDispatch()
   const handleRemove=(id)=>{
@@ -76,7 +76,7 @@ const toast =useToast()
 <div className="item-1">
 <p>{i+1}</p>
 <FontAwesomeIcon icon={faHeart} className="heart" onClick={()=>handleRemove(item._id)} />
-<div className='about-song'>
+<div className='about-song' onClick={()=>setindex(i)}>
   <div className='image-box'>
 <img src={item.avatar} alt="img" />
   </div>
@@ -90,7 +90,7 @@ const toast =useToast()
 </div>
 <div className="item-2">
   <p>{item.title}</p>
-  <p>time</p>
+  <p>{item.language}</p>
 </div>
 </div>)}
 
