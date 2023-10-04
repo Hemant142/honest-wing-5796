@@ -111,4 +111,16 @@ p{
 .canner>img{
     width: 20%;
 }
+
+@media screen and (max-width: 786px) {
+width: 80%;
+  position: sticky;
+  top:0;
+  .primium-icon{
+height:100px;
+  }
+  .canner>img{
+    width: 40%;
+}
+}
 `

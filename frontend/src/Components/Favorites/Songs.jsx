@@ -14,7 +14,7 @@ const toast =useToast()
       console.log({res})
       dispatch(GetAllFavoriteSong())
       toast({
-        title: `You dish like this song`,
+        title: `You dislike this song`,
         position: "bottom",
         status: 'error',
         duration: 3000,
@@ -75,6 +75,7 @@ const toast =useToast()
 {FavoriteSongData.map((item,i)=><div key={i} className='item-box'>
 <div className="item-1">
 <p>{i+1}</p>
+<div className="make-it-flex">
 <FontAwesomeIcon icon={faHeart} className="heart" onClick={()=>handleRemove(item._id)} />
 <div className='about-song' onClick={()=>setindex(i)}>
   <div className='image-box'>
@@ -84,10 +85,13 @@ const toast =useToast()
 <p>{item.artist}</p>
 </div>
 </div>
+</div>
 <div className='title'>
 <p>{item.title}</p>
 </div>
 </div>
+
+
 <div className="item-2">
   <p>{item.title}</p>
   <p>{item.language}</p>
@@ -118,10 +122,13 @@ const DIV= styled.div`
   padding: .3rem 1rem;
   align-items: center;
 }
-/* .item-box{
-  cursor: pointer;
-
-} */
+.make-it-flex{
+  border:0px solid red;
+  display: flex;
+  gap:1rem;
+  justify-content: center;
+  align-items: center;
+}
 .table-row-1,.table-row-2{
   display: flex;
   justify-content: space-between;
@@ -200,4 +207,15 @@ width: 70px;
   font-size: 27px;
 }
 
+@media screen and (max-width: 786px) {
+  .make-it-flex{
+    flex-direction: column;
+  
+  }
+  .about-song{
+    flex-direction: column;
+  
+  }
+
+}
 `
