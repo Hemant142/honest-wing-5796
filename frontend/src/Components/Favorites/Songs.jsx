@@ -14,7 +14,7 @@ const toast =useToast()
       console.log({res})
       dispatch(GetAllFavoriteSong())
       toast({
-        title: `You dish like this song`,
+        title: `You dislike this song`,
         position: "bottom",
         status: 'error',
         duration: 3000,

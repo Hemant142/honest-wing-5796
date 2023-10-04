@@ -93,6 +93,7 @@ export default function Songs() {
         }
       }
     }
+    console.log({bag})
     if(bag){
       dispatch(AddFavoriteSong(SongDetails)).then(res=>{
         dispatch(GetAllFavoriteSong())
@@ -109,7 +110,7 @@ export default function Songs() {
         console.log({res})
         dispatch(GetAllFavoriteSong())
         toast({
-          title: `You dish like this song`,
+          title: `You dislike this song`,
           position: "bottom",
           status: 'error',
           duration: 3000,
