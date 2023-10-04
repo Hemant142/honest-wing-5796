@@ -44,7 +44,9 @@ export default function Songs() {
     // console.log({FavoriteSongData})
   const [index, setIndex] = useState(0);
   console.log({index,songs})
+
   let URL = `https://graceful-gold-spacesuit.cyclic.cloud/songs/`;
+
   const fetchSongs = (query) => {
     axios.get(URL,query).then((res) => setSongs(res.data.data)).catch(err=>{
       console.log({err});
@@ -231,7 +233,7 @@ export default function Songs() {
         <Footer />
         <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
           {token ? (
-            <Player index={index} />
+            <Player index={index} songs={songs} />
           ) : (
             // ""
             <Add />

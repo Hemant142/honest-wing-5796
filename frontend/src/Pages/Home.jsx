@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <div id="main">
-        <div id="sidebar" style={{height:"100%"}}>
+        <div id="sidebar" style={{ height: "100%" }}>
           <Sidebar />
         </div>
 
@@ -32,18 +32,39 @@ export default function Home() {
 
         {/* <Songs/> */}
         {/* <Dummy/> */}
-        
-       
       </div>
       <Footer />
-      <div id="player" style={{ position: "fixed", marginLeft : "0px", bottom: 0, width: "100%" }}>
-          {token ? (
-          <Player index={0} />
-          ) : (
-            // ""
-            <Add />
-          )}
-        </div>
+      <div
+        id="player"
+        style={{
+          position: "fixed",
+          marginLeft: "0px",
+          bottom: 0,
+          width: "100%",
+        }}
+      >
+        {token ? (
+          <Player
+            index={0}
+            songs={[
+              {
+                title: "Lute Gaye",
+                audio:
+                  "https://pagalworld4u.in/download/get.php?id=Lut%20Gaye%20Song%20Jubin%20Nautiyal.mp3",
+                avatar:
+                  "https://pagalworld4u.in/wp-content/uploads/2021/12/Lut-Gaye-Song-Download-Mp3-Jubin-Nautiyal.jpg",
+                id: 10,
+                artist: "Jubin Nautiyal",
+                genre: "Classical",
+                language: "Hindi",
+              }
+            ]}
+          />
+        ) : (
+          // ""
+          <Add />
+        )}
+      </div>
     </>
   );
 }
