@@ -192,7 +192,7 @@ let QueryParam={}
       </div>):(
       // If logged in
       <div style={{ display: "flex", marginLeft: "10px" }}>
-      <button onClick={()=>setSow(true)}
+      <button 
         style={{
           width: "100px",
           backgroundColor: "white",

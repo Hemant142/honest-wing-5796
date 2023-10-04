@@ -225,7 +225,8 @@ export default function Songs() {
               ) : (
                 <Box width={1100}> <div className="loader">
                 <Loader />
-               </div>:</Box>
+               </div>
+               :</Box>
               )}
             </SimpleGrid>
           </Box>
