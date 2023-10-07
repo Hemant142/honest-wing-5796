@@ -50,9 +50,11 @@ width: 100%;
     padding: 5px;
     background-color: #2c2c2c;
     z-index: 0;
+    /* border: 2px solid red; */
 
     @media (max-width: 768px) {
         margin-left: 0%;
+        /* margin-right: 0%; */
         width:100%;
         
        
