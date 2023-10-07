@@ -44,8 +44,9 @@ export default function Songs() {
     // console.log({FavoriteSongData})
   const [index, setIndex] = useState(0);
   console.log({index,songs})
+
   let URL = `https://graceful-gold-spacesuit.cyclic.cloud/songs/`;
-  
+
   const fetchSongs = (query) => {
     axios.get(URL,query).then((res) => setSongs(res.data.data)).catch(err=>{
       console.log({err});
@@ -92,6 +93,7 @@ export default function Songs() {
         }
       }
     }
+    console.log({bag})
     if(bag){
       dispatch(AddFavoriteSong(SongDetails)).then(res=>{
         dispatch(GetAllFavoriteSong())
@@ -108,7 +110,7 @@ export default function Songs() {
         console.log({res})
         dispatch(GetAllFavoriteSong())
         toast({
-          title: `You dish like this song`,
+          title: `You dislike this song`,
           position: "bottom",
           status: 'error',
           duration: 3000,
@@ -223,7 +225,8 @@ export default function Songs() {
               ) : (
                 <Box width={1100}> <div className="loader">
                 <Loader />
-               </div>:</Box>
+               </div>
+               :</Box>
               )}
             </SimpleGrid>
           </Box>
@@ -232,7 +235,7 @@ export default function Songs() {
         <Footer />
         <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
           {token ? (
-            <Player index={index} />
+            <Player index={index} songs={songs} />
           ) : (
             // ""
             <Add />

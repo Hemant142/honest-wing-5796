@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MyFavorite from './MyFavorite'
 import Footer from '../Components/footer'
 import Sidebar from '../Components/Sidebar'
@@ -8,12 +8,28 @@ import SingleSong from '../Components/Favorites/SingleSong'
 import Add from '../Components/signupad'
 import Cookies from 'js-cookie'
 import Player from './Player'
+import { useDispatch, useSelector } from 'react-redux'
+import { GetAllFavoriteSong } from '../Redux/FavoriteSongReducer/Type'
 
 const MyFavoriteMain = () => {
 
   const [checkIsTrue,setCheckIsTrue]=useState(false)
    const [sowPopup,setSow]= useState(false)
+   const [index,setindex]= useState(0)
   const token = Cookies.get("login_token");
+  const dispatch=useDispatch();
+
+  const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
+ console.log({isLoading,FavoriteSongData,isError})
+ 
+  useEffect(()=>{
+ dispatch(GetAllFavoriteSong()).then(res=>{
+ console.log({res})
+ })
+  },[])
+ 
+ 
+
 
     return (
     <DIV>
@@ -29,7 +45,7 @@ const MyFavoriteMain = () => {
   <div className='my-favorite-box'>
 
   </div>
-  <MyFavorite  const sowPopup={sowPopup} setSow ={setSow} /> 
+  <MyFavorite  const sowPopup={sowPopup} setSow ={setSow} setindex={setindex} FavoriteSongData={FavoriteSongData}/> 
 
   {/* :<SingleSong/>}  */}
 </div>
@@ -39,7 +55,7 @@ const MyFavoriteMain = () => {
       </div>
       <div style={{ position: "fixed", bottom: 0 , width:"100%"}}>
       {token?
-      (<Player index={0}/>)
+      (<Player index={index} songs={FavoriteSongData}/>)
       // ""
       :(<Add/>)}
     </div>

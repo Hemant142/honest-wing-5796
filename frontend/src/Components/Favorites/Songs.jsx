@@ -6,7 +6,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from '../../Redux/FavoriteSongReducer/Type';
 import { useToast } from '@chakra-ui/react';
-const Song = ({FavoriteSongData}) => {
+const Song = ({FavoriteSongData,setindex}) => {
 const toast =useToast()
   const dispatch=useDispatch()
   const handleRemove=(id)=>{
@@ -14,7 +14,7 @@ const toast =useToast()
       console.log({res})
       dispatch(GetAllFavoriteSong())
       toast({
-        title: `You dish like this song`,
+        title: `You dislike this song`,
         position: "bottom",
         status: 'error',
         duration: 3000,
@@ -75,8 +75,9 @@ const toast =useToast()
 {FavoriteSongData.map((item,i)=><div key={i} className='item-box'>
 <div className="item-1">
 <p>{i+1}</p>
+<div className="make-it-flex">
 <FontAwesomeIcon icon={faHeart} className="heart" onClick={()=>handleRemove(item._id)} />
-<div className='about-song'>
+<div className='about-song' onClick={()=>setindex(i)}>
   <div className='image-box'>
 <img src={item.avatar} alt="img" />
   </div>
@@ -84,13 +85,16 @@ const toast =useToast()
 <p>{item.artist}</p>
 </div>
 </div>
+</div>
 <div className='title'>
 <p>{item.title}</p>
 </div>
 </div>
+
+
 <div className="item-2">
   <p>{item.title}</p>
-  <p>time</p>
+  <p>{item.language}</p>
 </div>
 </div>)}
 
@@ -118,10 +122,13 @@ const DIV= styled.div`
   padding: .3rem 1rem;
   align-items: center;
 }
-/* .item-box{
-  cursor: pointer;
-
-} */
+.make-it-flex{
+  border:0px solid red;
+  display: flex;
+  gap:1rem;
+  justify-content: center;
+  align-items: center;
+}
 .table-row-1,.table-row-2{
   display: flex;
   justify-content: space-between;
@@ -200,4 +207,15 @@ width: 70px;
   font-size: 27px;
 }
 
+@media screen and (max-width: 786px) {
+  .make-it-flex{
+    flex-direction: column;
+  
+  }
+  .about-song{
+    flex-direction: column;
+  
+  }
+
+}
 `
