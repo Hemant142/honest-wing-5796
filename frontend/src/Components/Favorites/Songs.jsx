@@ -73,12 +73,15 @@ function formatDuration(seconds) {
       JSON.stringify(likedSongs.filter((songId) => songId !== item.songId))
     );
   }
+  console.log(FavoriteSongData.length,"Length")
 
+  
 
 
 // console.log(formatDuration(durations[0]))
   return (
-    FavoriteSongData.length>0?<DIV>
+    <>
+   { FavoriteSongData.length>0?(<DIV>
       <div className="song-main">
   <div className="table">
 <div className="table-row-1">
@@ -121,7 +124,8 @@ function formatDuration(seconds) {
 
 
       </div>
-    </DIV>:< NoFavoriteSong/>
+    </DIV>):(< NoFavoriteSong/>)}
+    </>
   )
 }
 

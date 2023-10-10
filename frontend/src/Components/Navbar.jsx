@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, InputGroup, InputLeftElement, useToast } from "@chakra-ui/react";
+import { Input, InputGroup, InputLeftElement, Tooltip, useToast } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Link, useSearchParams } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -13,6 +13,8 @@ import {
 } from "../Redux/actionTypes";
 export default function Navbar({setSow}) {
   const token = Cookies.get("login_token");
+  const name=Cookies.get("login_name")
+  console.log(name)
   const [SearchPrarams,setSeachParams]=useSearchParams();
   let initialSearch= SearchPrarams.get("q")
 const [q,setQuery] = useState(initialSearch||"")
@@ -113,7 +115,7 @@ let QueryParam={}
       </InputGroup>
 
         {/* Profile Icon (visible on mobile) */}
-        <div style={{ display: "none", marginLeft: "10px" }}>
+        <div style={{ display: "none", marginLeft: "10px"  }}>
         <FontAwesomeIcon icon={faUserCircle} size="lg" color="white" />
       </div>
       {!token?(// If not logged in
@@ -239,7 +241,9 @@ let QueryParam={}
         }}
         onClick={handleLogout}
       >
+        <Tooltip label={name}>
         <FontAwesomeIcon icon={faUserCircle} size="lg" color="white" />
+        </Tooltip>
       </button>
     </div>
       )}

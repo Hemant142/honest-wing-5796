@@ -22,9 +22,7 @@ export default function MyFavorite({sowPopup,setSow,setIndex,index,setRender1, r
   const [sowInput,setSowInput]=useState(false);
 //  console.log(setRender1)
   const [song,setSong]=useState("")
-//  const dispatch=useDispatch();
-
-
+ const dispatch=useDispatch();
  const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
 // console.log({isLoading,FavoriteSongData,isError})
 
