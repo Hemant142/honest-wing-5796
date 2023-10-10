@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 const NoFavoriteSong = () => {
     const navigate= useNavigate()
+    
   return (
     <DIV>
      <div className='message-box'>

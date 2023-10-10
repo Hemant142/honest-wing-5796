@@ -155,18 +155,19 @@ export default function Songs() {
 
   return (
     <>
-      <>
-        <div style={{ display: "flex", width: "100%" }}>
+      <div>
+        <div style={{ display: "flex", width: "100%",height:"100%" ,backgroundColor:"#0000009b;" }}>
           <div id="sidebar" style={{ height: "100%" }}>
             <Sidebar />
           </div>
 
           <div
             style={{
-              left: "23%",
+               left: "23%",
               width: "77%",
               position: "fixed",
               zIndex: "2",
+              border:"2px solid red"
             }}
           >
             <Navbar />
@@ -178,6 +179,7 @@ export default function Songs() {
             padding={"5px"}
             backgroundColor={"#2C2C2C"}
             zIndex={"0"}
+          
             id="songs"
           >
             <SimpleGrid columns={columns} spacing={10}>
@@ -254,7 +256,7 @@ export default function Songs() {
         </div>
 
         <Footer />
-        <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
+        <div style={{ position: "fixed", bottom: 0,width: "100%", backgroundColor:"#0000009b;" }}>
           {token ? (
             <Player index={index} songs={songs} />
           ) : (
@@ -262,7 +264,7 @@ export default function Songs() {
             <Add />
           )}
         </div>
-      </>
+      </div>
     </>
   );
 }

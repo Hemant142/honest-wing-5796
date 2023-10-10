@@ -1,12 +1,13 @@
 *{
   box-sizing: border-box;
   scroll-behavior: smooth;
+  background-color: "#2C2C2C";
   
 }
 body{
   margin: 0;
   padding: 0;
-  background-color: #2C2C2C;
+  
 }
 
 /* login/signup button start */

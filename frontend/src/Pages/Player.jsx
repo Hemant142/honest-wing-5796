@@ -239,6 +239,7 @@ const DIV=styled.div`
     text-align: center;
     background:linear-gradient(90deg, rgba(246,0,203,1) 0%, rgba(0,212,255,1) 100%, rgba(0,234,247,1) 100%);   padding: 0px 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    background-color: #0000009b;
     /* width: 98%;
     margin: auto; */
 

@@ -9,6 +9,8 @@ import Add from '../Components/signupad'
 import Cookies from 'js-cookie'
 
 import Player from './Player2'
+import { useDispatch, useSelector } from 'react-redux'
+import { GetAllFavoriteSong } from '../Redux/FavoriteSongReducer/Type'
 
 // import Player from './Player'
 // import { useDispatch, useSelector } from 'react-redux'
@@ -88,7 +90,7 @@ const DIV= styled.div`
 display: flex;
 width:100%;
 margin: auto;
-/* background-color:#0000009b; */
+background-color:#0000009b;
   }
   .side-navbar{
 /* width: 24%; */
