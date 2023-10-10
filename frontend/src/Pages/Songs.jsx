@@ -161,13 +161,14 @@ export default function Songs() {
             <Sidebar />
           </div>
 
+
           <div
             style={{
                left: "23%",
               width: "77%",
               position: "fixed",
               zIndex: "2",
-              border:"2px solid red"
+             
             }}
           >
             <Navbar />
