@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 const BaseURL= "https://graceful-gold-spacesuit.cyclic.cloud/favorite"
 const token = Cookies.get("login_token");
 console.log({Cookiestoken:token})
-export const GetAllFavoriteSong=()=>async dispatch=>{
+export const GetAllFavoriteSong=(paramObj)=>async dispatch=>{
 try {
     dispatch({type:FAVORITE_SONG_REQUEST})
    return await axios.get(`${BaseURL}`,{headers:{Authorization:token}}).then(res=>{

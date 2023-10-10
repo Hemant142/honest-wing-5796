@@ -14,23 +14,25 @@ import { GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
 import Loader from "../Components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
-export default function MyFavorite({sowPopup,setSow,setindex,FavoriteSongData}) {
+
+import Player from "./Player2";
+export default function MyFavorite({sowPopup,setSow,setIndex,index,setRender1, render1}) {
+
   const [render, setRender] = useState("Songs");
-  const [sowInput,setSowInput]=useState(false)
- 
+  const [sowInput,setSowInput]=useState(false);
+//  console.log(setRender1)
   const [song,setSong]=useState("")
 //  const dispatch=useDispatch();
 
-//  const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
+
+ const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
 // console.log({isLoading,FavoriteSongData,isError})
 
-//  useEffect(()=>{
-// dispatch(GetAllFavoriteSong()).then(res=>{
+ useEffect(()=>{
+dispatch(GetAllFavoriteSong()).then(res=>{
 // console.log({res})
-// })
-//  },[])
-
-
+})
+ },[])
 
   const handleChange=(e)=>{
     setSong(e.target.value)
@@ -127,7 +129,10 @@ export default function MyFavorite({sowPopup,setSow,setindex,FavoriteSongData}) 
        </div>: */}
        <div className="multiple-render">
           {render=="Artists"&&<Artist />}
-          {render=="Songs"&&<Song FavoriteSongData={FavoriteSongData} setindex={setindex}/>}
+
+          {render=="Songs"&&<Song FavoriteSongData={FavoriteSongData}
+           setIndex={setIndex} index render1={render1} setRender1={setRender1} />}
+
           {render=="Playlists"&&<Playlists />}
           {render=="Albums"&&<Albums />}
         </div>
@@ -135,6 +140,7 @@ export default function MyFavorite({sowPopup,setSow,setindex,FavoriteSongData}) 
         
 
       </div>
+      {/* <Player/> */}
     </DIV>
   );
 }
@@ -142,7 +148,9 @@ export default function MyFavorite({sowPopup,setSow,setindex,FavoriteSongData}) 
 const DIV = styled.div`
 
   background-color: #000000d3;
+  /* color: black; */
   /* background-color: #000000ce; */
+  border: 2px solid black;
   .favorite-main{
     margin-bottom: 10px;
     /* border: 5px solid red; */
@@ -155,7 +163,7 @@ const DIV = styled.div`
     color: #fff;
 
    
- background: linear-gradient(to bottom, #dd07079b 0px, #dd07079b 268px,#0000009b 30%, #0000009b 100%);
+    background: linear-gradient(to bottom, #6b07dd9b 30%, #dd07bd9b 70%,#0000009b );
  /* background: linear-gradient(to bottom, #eb06cc9b 0%, #eb06cc9b 30%,#0000009b 30%, #0000009b 100%); */
 
 

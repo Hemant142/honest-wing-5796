@@ -16,7 +16,6 @@ import Add from "../Components/signupad";
 import Browser from "../Components/browser";
 import { useBreakpointValue } from "@chakra-ui/react";
 
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,7 +25,11 @@ import Player from "./Player";
 import Cookies from "js-cookie";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
+import {
+  AddFavoriteSong,
+  DeletFavoriteSong,
+  GetAllFavoriteSong,
+} from "../Redux/FavoriteSongReducer/Type";
 import Loader from "../Components/Loader";
 
 export default function Songs() {
@@ -35,27 +38,35 @@ export default function Songs() {
   const [songs, setSongs] = useState([]);
   const [hoveredSong, setHoveredSong] = useState(null);
   const [liked, setLiked] = useState(false);
-  const [SearchPrarams,setSeachParams]=useSearchParams();
-  const [likedSongs, setLikedSongs] = useState([]);
-  const location=useLocation()
+  const [SearchPrarams, setSeachParams] = useSearchParams();
+  const [toggle, setToggle] = useState(false);
+  const [likedSongs, setLikedSongs] = useState(
+    JSON.parse(localStorage.getItem("likedSongs")) || []
+  );
+  const location = useLocation();
   const toast = useToast();
-  const dispatch=useDispatch()
-    const {FavoriteSongData}=useSelector(state=>state.FavoriteSongReducer)
-    // console.log({FavoriteSongData})
+  const dispatch = useDispatch();
+  const { FavoriteSongData } = useSelector(
+    (state) => state.FavoriteSongReducer
+  );
+  // console.log({FavoriteSongData})
   const [index, setIndex] = useState(0);
-  console.log({index,songs})
 
+  // console.log({index,songs})
   let URL = `https://graceful-gold-spacesuit.cyclic.cloud/songs/`;
 
   const fetchSongs = (query) => {
-    axios.get(URL,query).then((res) => setSongs(res.data.data)).catch(err=>{
-      console.log({err});
-    })
+    axios
+      .get(URL, query)
+      .then((res) => setSongs(res.data.data))
+      .catch((err) => {
+        console.log({ err });
+      });
   };
   useEffect(() => {
     let paramObj = {
       params: {
-        q:SearchPrarams.get("q")
+        q: SearchPrarams.get("q"),
       },
     };
     fetchSongs(paramObj);
@@ -74,77 +85,81 @@ export default function Songs() {
   //  title: "LOVER";
   // _id: "651a75e120a97f3e7bd3c462";
   const handleAddToFavorite = (item) => {
-    
-      let SongDetails = {
+    setToggle(!toggle);
+    let SongDetails = {
       title: item.title,
       avatar: item.avatar,
       audio: item.audio,
       genre: item.genre,
       artist: item.artist,
       language: item.language,
-      songId:item._id
+      songId: item._id,
     };
-
-    let bag=true;
-    if(Array.isArray(FavoriteSongData)){
-      for(let el of FavoriteSongData){
-        if(el.songId==item._id){
-          bag=false
+    console.log(item);
+    let bag = true;
+    if (Array.isArray(FavoriteSongData)) {
+      for (let el of FavoriteSongData) {
+        if (el.songId === item._id) {
+          bag = false;
         }
       }
     }
-    console.log({bag})
-    if(bag){
-      dispatch(AddFavoriteSong(SongDetails)).then(res=>{
-        dispatch(GetAllFavoriteSong())
+
+    if (bag) {
+      dispatch(AddFavoriteSong(SongDetails)).then((res) => {
+        dispatch(GetAllFavoriteSong());
+
         toast({
           title: `You like this song`,
           position: "bottom",
-          status: 'success',
+          status: "success",
           duration: 2000,
           isClosable: true,
-      })
-      })
-    }else{
-      dispatch(DeletFavoriteSong(item._id)).then(res=>{
-        console.log({res})
-        dispatch(GetAllFavoriteSong())
+        });
+      });
+      // Add the song ID to the likedSongs array in localStorage
+      localStorage.setItem(
+        "likedSongs",
+        JSON.stringify([...likedSongs, item._id])
+      );
+    } else {
+      dispatch(DeletFavoriteSong(item._id)).then((res) => {
+        console.log({ res });
+        dispatch(GetAllFavoriteSong());
         toast({
           title: `You dislike this song`,
           position: "bottom",
-          status: 'error',
+          status: "error",
           duration: 3000,
           isClosable: true,
-      })
-      })
+        });
+      });
 
+      // Remove the song ID from the likedSongs array in localStorage
+      localStorage.setItem(
+        "likedSongs",
+        JSON.stringify(likedSongs.filter((songId) => songId !== item._id))
+      );
     }
-
-////////// For LIKE ICON
-    const isLiked = likedSongs.includes(item._id);
-
-    if (!isLiked) {
-      // Add the song to liked songs
-      setLikedSongs([...likedSongs, item._id]);
-    } else {
-      // Remove the song from liked songs
-      setLikedSongs(likedSongs.filter((songId) => songId !== item._id));
-    }
-
   };
 
-  
-  const columns = useBreakpointValue({ base: 1, md: 2, lg: 4, xl: 5 });
+  // console.log(likedSongs)
+  useEffect(() => {
+    const localLikedSongs =
+      JSON.parse(localStorage.getItem("likedSongs")) || [];
+    setLikedSongs(localLikedSongs);
+  }, [toggle]);
 
+  // console.log(likedSongs)
+  const columns = useBreakpointValue({ base: 1, md: 2, lg: 4, xl: 4 });
 
   return (
     <>
       <>
         <div style={{ display: "flex", width: "100%" }}>
-          
-        <div id="sidebar" style={{height:"100%"}}>
-          <Sidebar />
-        </div>
+          <div id="sidebar" style={{ height: "100%" }}>
+            <Sidebar />
+          </div>
 
           <div
             style={{
@@ -208,25 +223,31 @@ export default function Songs() {
                         className={`like-button `}
                         // borderRadius={"50%"}
                         // display={"none"}
-                        
+
                         // color={"white"}
                         onClick={() => handleAddToFavorite(ele)}
                       >
-                       <FontAwesomeIcon
-    icon={faHeart}
-    className={`like-icon ${likedSongs.includes(ele._id) ? "liked" : ""}`}
-  />
+                        <FontAwesomeIcon
+                          icon={faHeart}
+                          className={`like-icon ${
+                            likedSongs.includes(ele._id) ? "liked" : ""
+                          }`}
+                        />
                         {/* Like */}
                       </button>
-                      
                     </Box>
                   </Box>
                 ))
               ) : (
-                <Box width={1100}> <div className="loader">
-                <Loader />
-               </div>
-               :</Box>
+
+                <Box width={1100}>
+                  {" "}
+                  <div className="loader">
+                    <Loader />
+                  </div>
+                  :
+                </Box>
+
               )}
             </SimpleGrid>
           </Box>

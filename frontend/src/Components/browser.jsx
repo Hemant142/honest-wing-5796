@@ -10,12 +10,13 @@ import {
 
  } from '@chakra-ui/react'
 import "../Pages/css/home.css"
+import { Link } from 'react-router-dom';
 
 export default function Browser() {
   return (
     
 <Box  >
-
+<Link to={"/songs"}>
     <Box backgroundColor={"black"} borderRadius={"5px"} padding={"5px"}>
     <p style={{marginLeft:"50px", marginTop:"10px", fontFamily:"monospace", fontSize:"30px", fontWeight:"bolder", color:"white"}}>Recently played</p>
 <Flex
@@ -1353,6 +1354,8 @@ margin={"20px"}
 
 
     </Box>
+    </Link>
+
     </Box>
   );
 }

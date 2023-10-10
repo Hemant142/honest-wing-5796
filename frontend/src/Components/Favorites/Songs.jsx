@@ -1,17 +1,62 @@
-import React from 'react'
+
 import styled from 'styled-components';
 import NoFavoriteSong from './NoFavoriteSong';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
 import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from '../../Redux/FavoriteSongReducer/Type';
-import { useToast } from '@chakra-ui/react';
-const Song = ({FavoriteSongData,setindex}) => {
+
+import { Tooltip, useToast } from '@chakra-ui/react';
+const Song = ({FavoriteSongData,setIndex,index,setRender1,render1}) => {
+  // const audioUrl = 'https://cdnsongs.com/music/data/Punjabi/202108/MoonChild_Era/128/Lover.mp3';
+  const [durations, setDurations] = useState([]);
+  const [likedSongs, setLikedSongs] = useState(
+    JSON.parse(localStorage.getItem("likedSongs")) || []
+  );
+  // console.log(FavoriteSongData)
+
 const toast =useToast()
   const dispatch=useDispatch()
-  const handleRemove=(id)=>{
-    dispatch(DeletFavoriteSong(id)).then(res=>{
-      console.log({res})
+// <==================================Time of the Song===================>
+useEffect(() => {
+  const fetchDurations = async () => {
+    const durationsArray = [];
+    for (const song of FavoriteSongData) {
+      const audioElement = new Audio(song.audio);
+      audioElement.addEventListener('loadedmetadata', () => {
+        const duration = audioElement.duration;
+        durationsArray.push(duration);
+        if (durationsArray.length === FavoriteSongData.length) {
+          setDurations(durationsArray);
+        }
+      });
+      audioElement.load();
+    }
+  };
+
+  fetchDurations();
+}, [FavoriteSongData]);
+
+function formatDuration(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.round(seconds % 60);
+  return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
+// <=========================================End of Logic==================>
+
+
+
+
+
+  const handleRemove=(item)=>{
+    // console.log(setRender1,"item")
+
+    
+   
+    dispatch(DeletFavoriteSong(item._id)).then(res=>{
+      // console.log({res})
       dispatch(GetAllFavoriteSong())
       toast({
         title: `You dislike this song`,
@@ -20,44 +65,18 @@ const toast =useToast()
         duration: 3000,
         isClosable: true,
     })
+    setRender1(!render1)
+
     })
+    localStorage.setItem(
+      "likedSongs",
+      JSON.stringify(likedSongs.filter((songId) => songId !== item.songId))
+    );
   }
 
-    // const {FavoriteSongData}=useSelector(state=>state.FavoriteSongReducer)
-    // console.log({FavoriteSongData})
-  // const handleAddSongTofavorite = () => {
-  //   let SongDetails = {
-  //     title: item.title,
-  //     avatar: item.avatar,
-  //     audio: item.audio,
-  //     genre: item.genre,
-  //     image: item.image,
-  //     artist: item.artist,
-  //     language: item.language,
-  //     songId:item._id
-  //   };
 
-  //   let bag=true;
-  //   if(Array.isArray(FavoriteSongData)){
-  //     for(let el of FavoriteSongData){
-  //       if(el.songId==item._id){
-  //         bag=false
-  //       }
-  //     }
-  //   }
-  //   if(bag){
-      // dispatch(AddFavoriteSong(SongDetails)).then(res=>{
-      //   dispatch(GetAllFavoriteSong())
-      // })
-  //   }else{
-  //     dispatch(DeletFavoriteSong(item._id)).then(res=>{
-  //       dispatch(GetAllFavoriteSong())
-  //     })
 
-  //   }
-
-  // };
-
+// console.log(formatDuration(durations[0]))
   return (
     FavoriteSongData.length>0?<DIV>
       <div className="song-main">
@@ -68,35 +87,38 @@ const toast =useToast()
 </div>
 <div className="table-row-2">
 <p>ALBUMS</p>
-<p></p>
+<p>Time</p>
 </div>
 
   </div>
-{FavoriteSongData.map((item,i)=><div key={i} className='item-box'>
-<div className="item-1">
-<p>{i+1}</p>
-<div className="make-it-flex">
-<FontAwesomeIcon icon={faHeart} className="heart" onClick={()=>handleRemove(item._id)} />
-<div className='about-song' onClick={()=>setindex(i)}>
-  <div className='image-box'>
-<img src={item.avatar} alt="img" />
-  </div>
-<div className='singer-name'>
-<p>{item.artist}</p>
-</div>
-</div>
-</div>
-<div className='title'>
-<p>{item.title}</p>
-</div>
-</div>
 
+  {FavoriteSongData.map((item, i) => (
+          <div key={i} className='item-box'>
+            <div className="item-1">
+              <p>{i + 1}</p>
+              <Tooltip label={"Dislike"}><FontAwesomeIcon icon={faHeart} className="heart" onClick={() => handleRemove(item)} /></Tooltip>
+              <div className='about-song'>
+                <div className='image-box'>
+                  {/* Add a conditional check to ensure 'avatar' exists */}
+                  {item.avatar && (
+                    <img src={item.avatar} alt="img" onClick={() => setIndex(i)} />
+                  )}
+                </div>
+                <div className='singer-name'>
+                  <p>{item.artist}</p>
+                </div>
+              </div>
+              <div className='title'>
+                <p>{item.title}</p>
+              </div>
+            </div>
+            <div className="item-2">
+              <p>{item.title}</p>
+              <p>{formatDuration(durations[i] || 0)}</p>
+            </div>
+          </div>
+        ))}
 
-<div className="item-2">
-  <p>{item.title}</p>
-  <p>{item.language}</p>
-</div>
-</div>)}
 
       </div>
     </DIV>:< NoFavoriteSong/>

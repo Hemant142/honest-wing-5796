@@ -191,8 +191,10 @@ let QueryParam={}
       </button>
       </div>):(
       // If logged in
-      <div style={{ display: "flex", marginLeft: "10px" }}>
-      <button 
+
+      <div style={{ display: "flex", marginLeft: "10px", gap:"10px" }}>
+       <Link to={"/songs"}>   <button 
+
         style={{
           width: "100px",
           backgroundColor: "white",
@@ -204,8 +206,26 @@ let QueryParam={}
           fontWeight: "bold",
         }}
       >
-        Premium
+        Songs
+      </button></Link> 
+      <Link to={"/myfavorite"}>
+   <button
+    // onClick={()=>setSow(true)}
+        style={{
+          width: "100px",
+          backgroundColor: "white",
+          color: "black",
+          borderRadius: "30px",
+          height: "50px",
+          border: "none",
+          fontSize: "16px",
+          fontWeight: "bold",
+        }}
+      >
+        Liked Song
       </button>
+      </Link>
+
       <button
         style={{
           width: "100px",
