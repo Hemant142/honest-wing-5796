@@ -167,7 +167,7 @@ export default function Songs() {
               width: "77%",
               position: "fixed",
               zIndex: "2",
-              border:"2px solid red"
+             
             }}
           >
             <Navbar />
