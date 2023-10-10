@@ -4,7 +4,7 @@ import NoFavoriteSong from './NoFavoriteSong';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 const Artist = () => {
-  const arr=new Array(5).fill(0);
+  const arr=new Array(0).fill(0);
 
   return (
     arr.length>0?<DIV>

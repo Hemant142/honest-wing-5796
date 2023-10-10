@@ -10,9 +10,11 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import axios from "axios";
 import styled from "styled-components";
 import { useLocation, useSearchParams } from "react-router-dom";
-const Player = ({index}) => {
-  const [songs, setSongs] = useState([]);
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+const Player = ({index,songs}) => {
+  // const [songs, setSongs] = useState(data);
+  
+  // const [songs, setSongs] = useState([]);
+  const [currentSongIndex, setCurrentSongIndex] = useState(index);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentPlaybackTime, setCurrentPlaybackTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
@@ -22,6 +24,7 @@ const Player = ({index}) => {
    const [SearchPrarams,setSeachParams]=useSearchParams();
    const location= useLocation()
 // console.log(index,"index")
+// console.log({currentSongIndex,songs})
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -128,19 +131,7 @@ const Player = ({index}) => {
     audioRef.current.volume = newVolume;
   };
 
-  let URL = `https://graceful-gold-spacesuit.cyclic.cloud/songs/`;
-  const fetchSongs = (query) => {
-    axios.get(URL,query).then((res) => setSongs(res.data.data))
-    .catch((error)=>console.log(error))
-  };
-  useEffect(() => {
-    let paramObj = {
-      params: {
-        q:SearchPrarams.get("q")
-      },
-    };
-    fetchSongs(paramObj);
-  }, [location]);
+
 
   return (
 

@@ -14,13 +14,16 @@ import { GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
 import Loader from "../Components/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
+
 import Player from "./Player2";
 export default function MyFavorite({sowPopup,setSow,setIndex,index,setRender1, render1}) {
+
   const [render, setRender] = useState("Songs");
   const [sowInput,setSowInput]=useState(false);
 //  console.log(setRender1)
   const [song,setSong]=useState("")
- const dispatch=useDispatch();
+//  const dispatch=useDispatch();
+
 
  const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
 // console.log({isLoading,FavoriteSongData,isError})
@@ -30,6 +33,7 @@ dispatch(GetAllFavoriteSong()).then(res=>{
 // console.log({res})
 })
  },[])
+
   const handleChange=(e)=>{
     setSong(e.target.value)
   }
@@ -95,7 +99,7 @@ dispatch(GetAllFavoriteSong()).then(res=>{
           </div>
         </div>
         <div className="search-song">
-          <div className="song">{`SONG(${FavoriteSongData.length})`}</div>
+          <div className="song">{`${render}(${render=="Songs"?FavoriteSongData.length:0})`}</div>
           <div className="search">
             <SearchIcon
               className="search-icon"
@@ -120,15 +124,19 @@ dispatch(GetAllFavoriteSong()).then(res=>{
           </div>
         </div>
 
-       {isLoading?<div className="loader">
+       {/* {isLoading?<div className="loader">
         <Loader />
-       </div>:<div className="multiple-render">
+       </div>: */}
+       <div className="multiple-render">
           {render=="Artists"&&<Artist />}
+
           {render=="Songs"&&<Song FavoriteSongData={FavoriteSongData}
            setIndex={setIndex} index render1={render1} setRender1={setRender1} />}
+
           {render=="Playlists"&&<Playlists />}
           {render=="Albums"&&<Albums />}
-        </div>}
+        </div>
+       {/* } */}
         
 
       </div>

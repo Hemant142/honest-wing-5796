@@ -17,19 +17,17 @@ export default function Navbar({setSow}) {
   let initialSearch= SearchPrarams.get("q")
 const [q,setQuery] = useState(initialSearch||"")
 
-let id;
 const handleSearch=(e)=>{
-  setQuery(e.target.value)
-  if(id){
-    clearTimeout(id)
-  }
-  id=setTimeout(()=>{
-let QueryParam={}
-     q&&(QueryParam.q=q)
-     setSeachParams(QueryParam)
+  setQuery(e.target.value)  
+   
+}
 
-  },2000)
-     
+const handleKeyPress=(e)=>{
+  if(e.key === 'Enter'){
+let QueryParam={}
+ q&&(QueryParam.q=q)
+ setSeachParams(QueryParam)
+  }
 }
 
   const toast = useToast();
@@ -99,7 +97,7 @@ let QueryParam={}
           children={<SearchIcon color="gray.600" />}
           style={{ marginTop: "7px" }}
         />
-        <Input value={q} onChange={e=>handleSearch(e)}
+        <Input value={q} onKeyPress={handleKeyPress} onChange={handleSearch}
           style={{
             width: "100%",
             borderRadius: "30px",
@@ -193,8 +191,10 @@ let QueryParam={}
       </button>
       </div>):(
       // If logged in
+
       <div style={{ display: "flex", marginLeft: "10px", gap:"10px" }}>
        <Link to={"/songs"}>   <button 
+
         style={{
           width: "100px",
           backgroundColor: "white",

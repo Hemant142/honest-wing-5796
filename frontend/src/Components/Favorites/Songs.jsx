@@ -6,6 +6,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from "react";
 import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from '../../Redux/FavoriteSongReducer/Type';
+
 import { Tooltip, useToast } from '@chakra-ui/react';
 const Song = ({FavoriteSongData,setIndex,index,setRender1,render1}) => {
   // const audioUrl = 'https://cdnsongs.com/music/data/Punjabi/202108/MoonChild_Era/128/Lover.mp3';
@@ -14,6 +15,7 @@ const Song = ({FavoriteSongData,setIndex,index,setRender1,render1}) => {
     JSON.parse(localStorage.getItem("likedSongs")) || []
   );
   // console.log(FavoriteSongData)
+
 const toast =useToast()
   const dispatch=useDispatch()
 // <==================================Time of the Song===================>
@@ -89,6 +91,7 @@ function formatDuration(seconds) {
 </div>
 
   </div>
+
   {FavoriteSongData.map((item, i) => (
           <div key={i} className='item-box'>
             <div className="item-1">
@@ -116,6 +119,7 @@ function formatDuration(seconds) {
           </div>
         ))}
 
+
       </div>
     </DIV>:< NoFavoriteSong/>
   )
@@ -140,10 +144,13 @@ const DIV= styled.div`
   padding: .3rem 1rem;
   align-items: center;
 }
-/* .item-box{
-  cursor: pointer;
-
-} */
+.make-it-flex{
+  border:0px solid red;
+  display: flex;
+  gap:1rem;
+  justify-content: center;
+  align-items: center;
+}
 .table-row-1,.table-row-2{
   display: flex;
   justify-content: space-between;
@@ -222,4 +229,15 @@ width: 70px;
   font-size: 27px;
 }
 
+@media screen and (max-width: 786px) {
+  .make-it-flex{
+    flex-direction: column;
+  
+  }
+  .about-song{
+    flex-direction: column;
+  
+  }
+
+}
 `
