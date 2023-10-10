@@ -1,5 +1,7 @@
 .hover:hover .hover-button{
     display: block;
+    /* border: 2px solid yellow; */
+    background-color: green;
 }
 
 .image-hover:hover .hover-button{
@@ -36,8 +38,8 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin-top:-280px;
-    margin-right:150px;
+    margin-top:-270px;
+    margin-left:5px;
     position:absolute;
                         /* backgroundColor:transparent; */
     
@@ -47,12 +49,15 @@
   }
   .like-icon{
     color: white;
+    margin: 2px 0px 0px 2px;
+    /* border: 2px solid green; */
   }
   
   .like-button svg {
     width: 24px;
     height: 24px;
     margin-right: 8px;
+    
     /* fill: currentColor;  */
     /* Use the current text color for the heart icon */
   }

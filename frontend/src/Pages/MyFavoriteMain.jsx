@@ -7,14 +7,17 @@ import styled from 'styled-components'
 import SingleSong from '../Components/Favorites/SingleSong'
 import Add from '../Components/signupad'
 import Cookies from 'js-cookie'
-import Player from './Player'
+import Player from './Player2'
 
 const MyFavoriteMain = () => {
 
   const [checkIsTrue,setCheckIsTrue]=useState(false)
-   const [sowPopup,setSow]= useState(false)
+  const [sowPopup,setSow]= useState(false)
+  const [index,setIndex]=useState(0)
+  const [render1,setRender1]=useState(false)
   const token = Cookies.get("login_token");
 
+  // console.log(render1)
     return (
     <DIV>
       <div className='favorite-main'>
@@ -29,17 +32,21 @@ const MyFavoriteMain = () => {
   <div className='my-favorite-box'>
 
   </div>
-  <MyFavorite  const sowPopup={sowPopup} setSow ={setSow} /> 
+  <MyFavorite  const sowPopup={sowPopup} 
+  setSow ={setSow} setIndex={setIndex} 
+  setRender1={setRender1} render1={render1}
+  index={index} /> 
 
   {/* :<SingleSong/>}  */}
 </div>
       </div>
+      
       <div >
       < Footer/>
       </div>
       <div style={{ position: "fixed", bottom: 0 , width:"100%"}}>
       {token?
-      (<Player index={0}/>)
+      (<Player index={index} render1={render1}/>)
       // ""
       :(<Add/>)}
     </div>

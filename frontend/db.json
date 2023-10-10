@@ -1,17 +1,169 @@
 {
     "Song":[
+       
         {
-            "id":1,
-            "avatar":"",
-            "play":"",
-            "rating":"averaeg of liked and disliked",
-            "catogary":"Classic",
-            "title":"name",
-            "artist":"artist-name",
-            "liked":0,
-            "disliked":0,
-            "lyrics":["Song Lyrics"]
+            "title": "Tu Hai Kahan",
+            "audio": "https://pagalworldi.com/files/download/id/20115",
+            "avatar": "https://pagalworldi.com/siteuploads/thumb/sft41/20115_4.jpg",
+            "id": 64,
+            "artist": "Uraan",
+            "genre": "Indian Rap",
+            "language": "Hindi "
+        },
+        {
+            "title": "Faasle",
+            "audio": "https://pagalworldi.com/files/download/id/15534",
+            "avatar": "https://pagalworldi.com/siteuploads/thumb/sft32/15534_4.jpg",
+            "id": 65,
+            "artist": "Aditya Rikhari",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": " Saaiyaan",
+            "audio": "https://pagalnew.com/download128/5553",
+            "avatar": "https://pagalnew.com/coverimages/Saaiyaan-Gunday-500-500.jpg",
+            "id": 66,
+            "artist": "Shahid Mallya, Sohail Sen, Irshad Kamil",
+            "genre": "Indian POP",
+            "language": "Hindi"
+        },
+        {
+            "title": "Chaiyya Chaiyya",
+            "audio": "https://pagalnew.com/download128/14151",
+            "avatar": "https://pagalnew.com/coverimages/Chaiyya-Chaiyya-Dil-Se-500-500.jpg",
+            "id": 67,
+            "artist": "Sukhwinder Singh, Sapna Awasthi",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Meri Mehbooba",
+            "audio": "https://pagalnew.com/download128/15042",
+            "avatar": "https://pagalnew.com/coverimages/meri-mehbooba-pardes-500-500.jpg",
+            "id": 68,
+            "artist": "Kumar Sanu, Alka Yagnik",
+            "genre": "Bollywood",
+            "language": "Hindi"
+        },
+        {
+            "title": "Wo Ajnabee",
+            "audio": "https://pagalnew.com/download128/9505",
+            "avatar": "https://pagalnew.com/coverimages/Wo-Ajnabee-The-Train-500-500.jpg",
+            "id": 69,
+            "artist": "Mithoon, Shilpa Rao",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Maahi",
+            "audio": "https://pagalfree.com/musics/128-Maahi%20-%20RAAZ%20-%20The%20Mystery%20Continues%20128%20Kbps.mp3",
+            "avatar": "https://pagalfree.com/images/128Maahi%20-%20RAAZ%20-%20The%20Mystery%20Continues%20128%20Kbps.jpg",
+            "id": 70,
+            "artist": "Toshi Sabri",
+            "genre": "Indian Bollywood",
+            "language": "Hindi "
+        },
+        {
+            "title": "Saaki",
+            "audio": "https://pagalnew.com/download128/10767",
+            "avatar": "https://pagalnew.com/coverimages/Saaki-Musafir-500-500.jpg",
+            "id": 71,
+            "artist": " Sukhwinder Singh, Sunidhi Chauhan",
+            "genre": "Indian Bollywood",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Dhundhala",
+            "audio": "https://pagalnew.com/download128/43726",
+            "avatar": "https://pagalnew.com/coverimages/Dhundhala-Yashraj-500-500.jpg",
+            "id": 72,
+            "artist": "Yashraj, Dropped Out, Talwiinder",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Ramta Jogi",
+            "audio": "https://pagalnew.com/download128/13807",
+            "avatar": "https://pagalnew.com/coverimages/Ramta-Jogi-Taal-500-500.jpg",
+            "id": 73,
+            "artist": "Sukhwinder Singh, Alka Yagnik",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Sapne Mein Milti Hai",
+            "audio": "https://pagalnew.com/download128/14409",
+            "avatar": "https://pagalnew.com/coverimages/Sapne-Mein-Satya-500-500.jpg",
+            "id": 74,
+            "artist": "Asha Bhosle, Suresh Wadkar",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Chakna Chakna",
+            "audio": "https://pagalnew.com/download128/9345",
+            "avatar": "https://pagalnew.com/coverimages/Chakna-Chakna-Namastey-London-500-500.jpg",
+            "id": 75,
+            "artist": "Himesh Reshammiya",
+            "genre": "Indian POP",
+            "language": "Hindi"
+        },
+        {
+            "title": "Humne Jugnu Jugnu Karke",
+            "audio": "https://audiosong.in/files/download/id/5909",
+            "avatar": "https://audiosong.in/siteuploads/thumb/sft12/5909_6.jpg",
+            "id": 76,
+            "artist": "JalRaj",
+            "genre": "Bollywood Romantic ",
+            "language": "Hindi"
+        },
+        {
+            "title": "Ik Lamha",
+            "audio": "https://pagalworldi.com/files/download/id/10850",
+            "avatar": "https://pagalworldi.com/siteuploads/thumb/sft22/10850_4.jpg",
+            "id": 77,
+            "artist": "Azaan Sami Khan",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Aigiri Nandini",
+            "audio": "https://dns4.pendusaab.com/download/128k-adlnb/Aigiri-Nandini-(From-%22Aigiri-Nandini%22).mp3",
+            "avatar": "https://img.wynk.in/unsafe/200x200/filters:no_upscale():strip_exif():format(jpg)/http://s3-ap-south-1.amazonaws.com/wynk-music-cms/music/1632922234/srch_pplmumbai_INR992100014.jpg",
+            "id": 78,
+            "artist": "Brodha V",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Liggi",
+            "audio": "https://pwdown.info/113510/Liggi%20-%20Ritviz.mp3",
+            "avatar": "https://www.pagalworld.pw/GpE34Kg9Gq/113510/144697-liggi-ritviz-mp3-song-300.jpg",
+            "id": 79,
+            "artist": "Ritviz",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Pasoori",
+            "audio": "https://pwdown.info/113604/Pasoori%20-%20Shae%20Gill.mp3",
+            "avatar": "https://www.pagalworld.pw/GpE34Kg9Gq/113604/148772-pasoori-mp3-song-300.jpg",
+            "id": 80,
+            "artist": "Shae Gill, Ali Sethi, Coke Studio 14",
+            "genre": "Indian POP",
+            "language": "Panjabi"
+        },
+        {
+            "title": "Shiv Tandav",
+            "audio": "https://pagalnew.com/download128/38240",
+            "avatar": "https://pagalnew.com/coverimages/album/shiv-tandav-rock-version-aigiri-nandini-2023-0217-500-500.jpg",
+            "id": 81,
+            "artist": "Sachet Tandon, Parampara Tandon",
+            "genre": "Indian POP",
+            "language": "Panjabi"
         }
-    ],
+    ]
+    ,
     "users":[]
 }
