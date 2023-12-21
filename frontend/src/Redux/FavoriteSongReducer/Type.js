@@ -1,7 +1,7 @@
 import axios from "axios"
 import { DELETE_FAVORITE_SONG_REQUEST_SUCCESS, FAVORITE_SONG_REQUEST, FAVORITE_SONG_REQUEST_FAIL, FAVORITE_SONG_REQUEST_SUCCESS, POST_FAVORITE_SONG_REQUEST_SUCCESS, UPDATE_FAVORITE_TO_EMPTY } from "./ActionType"
 import Cookies from "js-cookie";
-const BaseURL= "https://graceful-gold-spacesuit.cyclic.cloud/favorite"
+const BaseURL= "https://modern-plum-overcoat.cyclic.app/favorite"
 const token = Cookies.get("login_token");
 console.log({Cookiestoken:token})
 export const GetAllFavoriteSong=(paramObj)=>async dispatch=>{
