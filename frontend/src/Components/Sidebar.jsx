@@ -61,7 +61,7 @@ export default function Sidebar() {
             src="searchicon.png"
             alt="search"
           />
-          <h3 style={{ color: "#F1F1F1", marginLeft: "17px" }}>Search</h3>
+          <h3 style={{ color: "#F1F1F1", marginLeft: "17px" }}>Song</h3>
           </div>
           </Link>
         </div>
