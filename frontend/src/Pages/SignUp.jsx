@@ -97,7 +97,7 @@ export default function SignUp() {
           setMonth("");
           setYear("");
           toast({
-            title: `${res.data.message}`,
+            title: `User has been registered`,
             position: "bottom",
             status: "success",
             duration: 2000,
@@ -114,9 +114,10 @@ export default function SignUp() {
             duration: 3000,
             isClosable: true,
           });
-        } else {
+        } 
+        else {
           toast({
-            title: `Something Went Wrong, Try again!!`,
+            title: `Registration failed Password should contain atlease one uppercase, one number and one special character`,
             status: "error",
             position: "bottom",
             duration: 3000,
