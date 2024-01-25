@@ -48,7 +48,7 @@ userRouter.post("/register", async (req, res) => {
         });
         await NewUser.save();
         return res.status(200).json({
-          msg: "The new user has been registered",
+          msg: "User has been registered",
           registeredUser: NewUser,
         });
       });
