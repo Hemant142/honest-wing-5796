@@ -26,7 +26,7 @@ export default function Home() {
           <Navbar />
         </div>
       </div>
-      
+
       <div id="browse">
         <Browser />
 
@@ -57,7 +57,7 @@ export default function Home() {
                 artist: "Jubin Nautiyal",
                 genre: "Classical",
                 language: "Hindi",
-              }
+              },
             ]}
           />
         ) : (

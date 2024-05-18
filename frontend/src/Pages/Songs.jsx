@@ -53,7 +53,7 @@ export default function Songs() {
   const [index, setIndex] = useState(0);
 
   // console.log({index,songs})
-  let URL = `https://modern-plum-overcoat.cyclic.app/songs/`;
+  let URL = `https://worried-colt-train.cyclic.app/songs/`;
 
   const fetchSongs = (query) => {
     axios
