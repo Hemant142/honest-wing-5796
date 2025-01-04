@@ -8,6 +8,7 @@ import { FaPlay } from "react-icons/fa";
 import { ImPause2 } from "react-icons/im";
 import { HiSpeakerWave } from "react-icons/hi2";
 import axios from "axios";
+import Cookies from "js-cookie";
 import styled from "styled-components";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +19,7 @@ const Player = ({index,render1}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentPlaybackTime, setCurrentPlaybackTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
+    const token = Cookies.get("login_token");
   const [volume, setVolume] = useState(1); // State to track volume (1 is full volume)
   const [isVolumeControlVisible, setVolumeControlVisible] = useState(false); // State to show/hide volume control pop-up
   const audioRef = useRef(null);
@@ -146,7 +148,7 @@ const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSon
         q:SearchPrarams.get("q")
       },
     };
-    dispatch(GetAllFavoriteSong(paramObj)).then((res) => setSongs(res.FavoriteSong))
+    dispatch(GetAllFavoriteSong(paramObj,token)).then((res) => setSongs(res.FavoriteSong))
         .catch((error)=>console.log(error))
   }, [location,render1]);
 

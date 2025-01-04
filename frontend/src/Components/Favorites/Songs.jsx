@@ -4,6 +4,7 @@ import NoFavoriteSong from './NoFavoriteSong';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { AddFavoriteSong, DeletFavoriteSong, GetAllFavoriteSong } from '../../Redux/FavoriteSongReducer/Type';
 
@@ -13,9 +14,11 @@ const Song = ({FavoriteSongData,setIndex,index,setRender1,render1}) => {
   const [durations, setDurations] = useState([]);
   const [likedSongs, setLikedSongs] = useState(
     JSON.parse(localStorage.getItem("likedSongs")) || []
+    
   );
   // console.log(FavoriteSongData)
 
+   const token = Cookies.get("login_token");
 const toast =useToast()
   const dispatch=useDispatch()
 // <==================================Time of the Song===================>
@@ -55,9 +58,9 @@ function formatDuration(seconds) {
 
     
    
-    dispatch(DeletFavoriteSong(item._id)).then(res=>{
+    dispatch(DeletFavoriteSong(item._id,token)).then(res=>{
       // console.log({res})
-      dispatch(GetAllFavoriteSong())
+      dispatch(GetAllFavoriteSong('r',token))
       toast({
         title: `You dislike this song`,
         position: "bottom",

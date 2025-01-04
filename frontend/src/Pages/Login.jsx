@@ -52,13 +52,13 @@ export default function Login() {
   const handleSubmit = (e) => {
    
     e.preventDefault();
-    // console.log(formdata,"Form data")
+    
     dispatch(userlogin(formdata)).then((res)=>{
-      console.log(res.data,"data")
+      
       dispatch({type:USER_LOGIN_SUCCESS})
       
       if(res.data.msg==="Login Successfull!"){
-          console.log(res);
+         
           setFormdata({email:"",password:""})
           Cookies.set("login_token",`${res.data.token}`,{expires:7})
           Cookies.set("login_name",`${res.data.existingUser.name}`,{expires:7})
@@ -115,7 +115,7 @@ export default function Login() {
         })
   })
   };
-  console.log(token,name)
+  
   // if (token && name) {
   //   return <Navigate to="/" />;
   // }

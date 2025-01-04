@@ -28,6 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   AddFavoriteSong,
   DeletFavoriteSong,
+  fetchSongs,
   GetAllFavoriteSong,
 } from "../Redux/FavoriteSongReducer/Type";
 import Loader from "../Components/Loader";
@@ -35,7 +36,7 @@ import Loader from "../Components/Loader";
 export default function Songs() {
   const token = Cookies.get("login_token");
   const [query, setQuery] = useState("");
-  const [songs, setSongs] = useState([]);
+  // const [songs, setSongs] = useState([]);
   const [hoveredSong, setHoveredSong] = useState(null);
   const [liked, setLiked] = useState(false);
   const [SearchPrarams, setSeachParams] = useSearchParams();
@@ -49,28 +50,40 @@ export default function Songs() {
   const { FavoriteSongData } = useSelector(
     (state) => state.FavoriteSongReducer
   );
-  // console.log({FavoriteSongData})
+
   const [index, setIndex] = useState(0);
+  const songs=useSelector(state=>state.FavoriteSongReducer.songs)
 
   // console.log({index,songs})
-  let URL = `https://worried-colt-train.cyclic.app/songs/`;
+  // let URL = `https://worried-colt-train.cyclic.app/songs/`;
 
-  const fetchSongs = (query) => {
-    axios
-      .get(URL, query)
-      .then((res) => setSongs(res.data.data))
-      .catch((err) => {
-        console.log({ err });
-      });
-  };
-  useEffect(() => {
+  // const fetchSongs = (query) => {
+  //   axios
+  //     .get(URL, query)
+  //     .then((res) => setSongs(res.data.data))
+  //     .catch((err) => {
+  //       console.log({ err });
+  //     });
+  // };
+  useEffect(()=>{
     let paramObj = {
       params: {
         q: SearchPrarams.get("q"),
       },
     };
-    fetchSongs(paramObj);
-  }, [location]);
+    
+    dispatch(fetchSongs(paramObj,token));
+    dispatch(GetAllFavoriteSong(paramObj,token))
+  },[token,location])
+
+  // useEffect(() => {
+  //   let paramObj = {
+  //     params: {
+  //       q: SearchPrarams.get("q"),
+  //     },
+  //   };
+  //   fetchSongs(paramObj);
+  // }, [location]);
 
   // const toggleLike = () => {
   //   setLiked(!liked);
@@ -106,8 +119,8 @@ export default function Songs() {
     }
 
     if (bag) {
-      dispatch(AddFavoriteSong(SongDetails)).then((res) => {
-        dispatch(GetAllFavoriteSong());
+      dispatch(AddFavoriteSong(SongDetails,token)).then((res) => {
+        dispatch(GetAllFavoriteSong('te',token));
 
         toast({
           title: `You like this song`,
@@ -123,9 +136,9 @@ export default function Songs() {
         JSON.stringify([...likedSongs, item._id])
       );
     } else {
-      dispatch(DeletFavoriteSong(item._id)).then((res) => {
+      dispatch(DeletFavoriteSong(item._id,token)).then((res) => {
         console.log({ res });
-        dispatch(GetAllFavoriteSong());
+        dispatch(GetAllFavoriteSong("t",token));
         toast({
           title: `You dislike this song`,
           position: "bottom",
@@ -208,7 +221,7 @@ export default function Songs() {
                       <Text paddingLeft={2}>{ele.artist}</Text>
                     </Box>
 
-                    <Box>
+                    <Box >
                       <Button
                         className="hover-button"
                         borderRadius={"50%"}
@@ -225,17 +238,30 @@ export default function Songs() {
                       <button
                         className={`like-button `}
                         // borderRadius={"50%"}
+                        
                         // display={"none"}
 
                         // color={"white"}
                         onClick={() => handleAddToFavorite(ele)}
                       >
-                        <FontAwesomeIcon
+                        {/* <FontAwesomeIcon
+                        border={"2px solid red"}
                           icon={faHeart}
                           className={`like-icon ${
                             likedSongs.includes(ele._id) ? "liked" : ""
                           }`}
-                        />
+                        /> */}
+                        <FontAwesomeIcon
+  icon={faHeart}
+  className={`like-icon ${
+    FavoriteSongData.some((fav)=>fav.songId==ele._id) ? "liked" : "unliked"
+  }`}
+  style={{
+    color: FavoriteSongData.some((fav)=>fav.songId==ele._id) ? "red" : "white",
+ 
+  }}
+/>
+
                         {/* Like */}
                       </button>
                     </Box>

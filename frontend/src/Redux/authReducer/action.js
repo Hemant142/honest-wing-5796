@@ -1,36 +1,41 @@
 import { USER_LOADING } from "../actionTypes";
 import axios from "axios";
 
+const apiUrl = process.env.REACT_APP_SAREGAMA_API_URL;
+
+
+
 export const usersignup = (payload)=> (dispatch)=>{
-    // console.log(payload,"Payloadf")
+   
     dispatch({type:USER_LOADING})
-    return axios.post("https://worried-colt-train.cyclic.app/users/register",payload)
+    return axios.post(`${apiUrl}/users/register`,payload)
 }
 
 export const userlogin = (data)=> (dispatch)=>{
-    console.log(data)
+  
     dispatch({type:USER_LOADING})
-    return axios.post("https://worried-colt-train.cyclic.app/users/login",data)
+    return axios.post(`${apiUrl}/users/login`,data)
 }
 
 
-export const userlogout = (token) => (dispatch)=> {
-    dispatch({type:USER_LOADING});
+export const userlogout = (token) => (dispatch) => {
+    dispatch({ type: USER_LOADING });
 
-    return axios.get("https://worried-colt-train.cyclic.app/users/logout",{
-        headers:{
-            "Authorization":token
-        }})
-}
+    return axios.get(`${apiUrl}/users/logout`, {
+        headers: {
+            "Authorization": `Bearer ${token}`,  // Pass the token as a Bearer token
+        },
+    });
+};
 
 
 export const userforgot = (data)=> (dispatch)=>{
-    // console.log(data)
+   
     dispatch({type:USER_LOADING})
-    return axios.post("https://worried-colt-train.cyclic.app/users/forgot",data);
+    return axios.post(`${apiUrl}/users/forgot`,data);
 }
 
 export const usereset = (token,id,data)=> (dispatch)=>{
     dispatch({type:USER_LOADING})
-    return axios.post(`https://worried-colt-train.cyclic.app/users/resetpassword/${id}/${token}`,data);
+    return axios.post(`${apiUrl}/users/resetpassword/${id}/${token}`,data);
 }

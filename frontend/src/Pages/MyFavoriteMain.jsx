@@ -11,6 +11,7 @@ import Cookies from 'js-cookie'
 import Player from './Player2'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetAllFavoriteSong } from '../Redux/FavoriteSongReducer/Type'
+import { useSearchParams } from 'react-router-dom'
 
 // import Player from './Player'
 // import { useDispatch, useSelector } from 'react-redux'
@@ -24,15 +25,21 @@ const MyFavoriteMain = () => {
   const [sowPopup,setSow]= useState(false)
   const [index,setIndex]=useState(0)
   const [render1,setRender1]=useState(false)
-
+const [SearchPrarams, setSeachParams] = useSearchParams();
   const token = Cookies.get("login_token");
   const dispatch=useDispatch();
 
   const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
  console.log({isLoading,FavoriteSongData,isError})
  
+ 
   useEffect(()=>{
- dispatch(GetAllFavoriteSong()).then(res=>{
+    let paramObj = {
+      params: {
+        q: SearchPrarams.get("q"),
+      },
+    };
+ dispatch(GetAllFavoriteSong("paramObj",token)).then(res=>{
  console.log({res})
  })
   },[])

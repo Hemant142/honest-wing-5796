@@ -39,7 +39,7 @@ let QueryParam={}
     dispatch(userlogout(token)).then((res) => {
       console.log(res.data);
       dispatch({ type: VALID_USER_LOGOUT_SUCCESS });
-      if (res.data.msg === "User has been logged out") {
+      if (res.data.msg === "User has been loggged out") {
         toast({
           title: `Logged Out Successfully!!`,
           position: "bottom",

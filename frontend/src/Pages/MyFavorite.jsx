@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Artist from "../Components/Favorites/Artist";
@@ -8,6 +8,7 @@ import Albums from "../Components/Favorites/Albums";
 import Song from "../Components/Favorites/Songs";
 import Playlists from "../Components/Favorites/Playlists";
 import PrimiumPopup from "../Components/Favorites/PrimiumPopup";
+import Cookies from "js-cookie";
 
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllFavoriteSong } from "../Redux/FavoriteSongReducer/Type";
@@ -20,17 +21,23 @@ export default function MyFavorite({sowPopup,setSow,setIndex,index,setRender1, r
 
   const [render, setRender] = useState("Songs");
   const [sowInput,setSowInput]=useState(false);
+   const [SearchPrarams, setSeachParams] = useSearchParams();
 //  console.log(setRender1)
   const [song,setSong]=useState("")
  const dispatch=useDispatch();
  const {isLoading,FavoriteSongData,isError}= useSelector(state=>state.FavoriteSongReducer)
-// console.log({isLoading,FavoriteSongData,isError})
+console.log(FavoriteSongData,"Faviroute songs")
+ const token = Cookies.get("login_token");
 
  useEffect(()=>{
-dispatch(GetAllFavoriteSong()).then(res=>{
-// console.log({res})
-})
- },[])
+  let paramObj = {
+    params: {
+      q: SearchPrarams.get("q"),
+    },
+  };
+  
+dispatch(GetAllFavoriteSong("paramObj",token))
+ },[token])
 
   const handleChange=(e)=>{
     setSong(e.target.value)
