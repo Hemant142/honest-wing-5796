@@ -84,23 +84,21 @@ export const DeletFavoriteSong=(id,token)=>async dispatch=>{
 
   
     export const fetchSongs = (paramObj) => async (dispatch) => {
-        dispatch({ type: SONG_REQUEST });
-        try {
-         
-          // Make the GET request with query parameters and headers
-          const response = await axios.get(`${apiUrl}/songs`, {
-            paramObj,
-          });
-      
-        
-      
-          // Dispatch success action with the fetched songs
-          dispatch({ type: SONG_REQUEST_SUCCESS, payload: response.data.data });
-        } catch (error) {
-          console.log("Error fetching songs:", error);
-      
-          // Dispatch failure action
-          dispatch({ type: SONG_REQUEST_FAIL });
-        }
-      };
-      
+      dispatch({ type: SONG_REQUEST });
+      console.log(paramObj, "paramObj"); // Log the paramObj for debugging
+      try {
+        // Ensure paramObj is passed under the 'params' key
+        const response = await axios.get(`${apiUrl}/songs`, {
+          params: paramObj, // Axios expects query parameters under 'params'
+        });
+    console.log(response,"response")
+        // Dispatch success action with the fetched songs
+        dispatch({ type: SONG_REQUEST_SUCCESS, payload: response.data.data });
+      } catch (error) {
+        console.error("Error fetching songs:", error);
+    
+        // Dispatch failure action
+        dispatch({ type: SONG_REQUEST_FAIL });
+      }
+    };
+    

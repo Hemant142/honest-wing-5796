@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex, Spacer } from "@chakra-ui/react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { LiaHomeSolid } from "react-icons/lia";
+import { IoSearch } from "react-icons/io5";
+import { VscLibrary } from "react-icons/vsc";
+import { MdOutlineLibraryMusic } from "react-icons/md";
+// import { LuLibraryBig } from "react-icons/lu";
+import { IoLibraryOutline } from "react-icons/io5";
 
 export default function Sidebar() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const location = useLocation();
+
+  const getColor = (path) => {
+    return location.pathname === path ? "#F1F1F1" : "#787878";
+  };
 
   return (
     <div
@@ -29,42 +42,93 @@ export default function Sidebar() {
           src="https://i.ytimg.com/vi/704PL_KSLPY/maxresdefault.jpg"
           alt=""
         />
-        <div
+           <div>
+      {/* HOME Link */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginBottom: "0px",
+          height: "50px",
+        }}
+      >
+        <Link
+          to={"/"}
           style={{
             display: "flex",
             alignItems: "center",
-            marginBottom: "0px",
-            height: "50px",
+            textDecoration: "none",
           }}
         >
-          <img
-            style={{ width: "25px", height: "25px", marginLeft: "28px" }}
-            src="homeicon.png"
-            alt="home"
+          <LiaHomeSolid
+            style={{
+              fontSize: "25px",
+              marginLeft: "28px",
+              color: getColor("/"),
+              cursor: "pointer",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#F1F1F1")}
+            onMouseLeave={(e) => (e.target.style.color = getColor("/"))}
           />
-         <Link to={"/"}>
-          <h3 style={{ color: "#787878", marginLeft: "17px" }}>HOME</h3></Link> 
-        </div>
+          <h3
+            style={{
+              color: getColor("/"),
+              marginLeft: "17px",
+              cursor: "pointer",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#F1F1F1")}
+            onMouseLeave={(e) => (e.target.style.color = getColor("/"))}
+          >
+            HOME
+          </h3>
+        </Link>
+      </div>
 
-        <div
+      {/* SONGS Link */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginTop: "0px",
+          height: "50px",
+        }}
+      >
+        <Link
+          to={"/songs"}
           style={{
             display: "flex",
             alignItems: "center",
-            marginTop: "0px",
-            height: "50px",
+            textDecoration: "none",
           }}
         >
-          <Link to={"/songs"}>
-            <div style={{display:"flex"}}>
-          <img
-            style={{ width: "25px", height: "25px", marginLeft: "28px" }}
-            src="searchicon.png"
-            alt="search"
+          <IoSearch
+            style={{
+              fontSize: "25px",
+              marginLeft: "28px",
+              color: getColor("/songs"),
+              cursor: "pointer",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#F1F1F1")}
+            onMouseLeave={(e) => (e.target.style.color = getColor("/songs"))}
           />
-          <h3 style={{ color: "#F1F1F1", marginLeft: "17px" }}>Song</h3>
-          </div>
-          </Link>
-        </div>
+          <h3
+            style={{
+              color: getColor("/songs"),
+              marginLeft: "17px",
+              cursor: "pointer",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#F1F1F1")}
+            onMouseLeave={(e) => (e.target.style.color = getColor("/songs"))}
+          >
+            Song
+          </h3>
+        </Link>
+      </div>
+    </div>
       </div>
 
       <div
@@ -84,15 +148,48 @@ export default function Sidebar() {
             height: "50px",
           }}
         >
-          <Link to={"/myfavorite"}>
-         <div style={{display:"flex"}}> <img
-            style={{ width: "25px", height: "25px", marginLeft: "28px" }}
-            src="libraryicon.png"
-            alt="search"
+          {/* YOUR LIBRARY Link */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginTop: "0px",
+          height: "50px",
+        }}
+      >
+        <Link
+          to={"/myfavorite"}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+          }}
+        >
+          <VscLibrary
+            style={{
+              fontSize: "25px",
+              marginLeft: "28px",
+              color: getColor("/myfavorite"),
+              cursor: "pointer",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#F1F1F1")}
+            onMouseLeave={(e) => (e.target.style.color = getColor("/myfavorite"))}
           />
-          <h3 style={{ color: "#787878", marginLeft: "17px" }}>Your Library</h3>
-          </div>
-          </Link>
+          <h3
+            style={{
+              color: getColor("/myfavorite"),
+              marginLeft: "17px",
+              cursor: "pointer",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#F1F1F1")}
+            onMouseLeave={(e) => (e.target.style.color = getColor("/myfavorite"))}
+          >
+            Your Library
+          </h3>
+        </Link>
+      </div>
         </div>
 
         <div
@@ -113,22 +210,29 @@ export default function Sidebar() {
             It's easy we will help you
           </h4>
           <button
-            style={{
-              width: "80%",
-              borderRadius: "25px",
-              backgroundColor: "white",
-              border: "none",
-              margin: "20px",
-              color: "black",
-              fontWeight: "bold",
-              padding: "5px",
-              fontSize: "17px",
-              margin: "auto",
-              marginTop: "30px",
-            }}
-          >
-            Create Playlist
-          </button>
+      style={{
+        width: "80%",
+        borderRadius: "25px",
+        backgroundColor: "#ffffff", // Default background color
+        border: "none",
+        margin: "20px auto",
+        color: "black", // Default text color
+        fontWeight: "bold",
+        padding: "10px",
+        fontSize: "17px",
+        display: "block",
+        marginTop: "30px",
+        transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out", // Smooth zoom effect
+        transform: isHovered ? "scale(1.1)" : "scale(1)", // Scale up on hover
+        boxShadow: isHovered
+          ? "0 6px 12px rgba(0, 0, 0, 0.2)" // Shadow on hover
+          : "none", // No shadow by default
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      Create Playlist
+    </button>
         </div>
 
         <div
